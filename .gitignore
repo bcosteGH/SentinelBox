@@ -1,8 +1,0 @@
-.env
-__pycache__
-runs
-state.sqlite
-state.sqlite-shm
-state.sqlite-wal
-.pytest_cache
-.gitignore
