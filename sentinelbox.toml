@@ -1,0 +1,39 @@
+[core]
+interface = "enp0s3"
+workdir = "./runs"
+db_path = "./state.sqlite"
+reset_previous_runs = true
+reset_database = true
+target_cidr = ""
+
+[report]
+output_dir = "./reports"
+
+[logging]
+level = "DEBUG"
+
+[discovery]
+method = "nmap"
+nmap_args = "-sn"
+nmap_timing = "T5"
+nmap_min_rate = 0
+nmap_max_rate = 0
+large_hosts_threshold = 4096
+arp_fallback_timeout_seconds = 300
+resolve_hostnames = true
+resolver_timeout_ms = 300
+resolver_threads = 32
+enable_avahi = true
+
+[os_obsolescence]
+nmap_timing = "T5"
+host_timeout_seconds = 45
+batch_size = 16
+max_retries = 1
+overall_timeout_seconds = 240
+oscan_guess = true
+oscan_limit = false
+use_pn = true
+rules_path = "data/nmap_os_comments.jsonl"
+enable_rules_fallback = true
+strict_unambiguous_only = true

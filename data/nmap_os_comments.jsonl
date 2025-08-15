@@ -1,0 +1,893 @@
+{"match_type":"literal","match":"2.11BSD","comment":"Système UNIX historique non maintenu. Segmenter strictement, supprimer toute exposition Internet, migrer vers un OS supporté.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"4.1C BSD","comment":"Version BSD très ancienne. Segmenter, retirer toute exposition WAN et migrer vers un dérivé contemporain supporté.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"4.3BSD","comment":"Version BSD historique. Isoler, limiter aux usages de labo, prévoir remplacement par un OS maintenu.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"2N Helios IP VoIP doorbell","comment":"Matériel IoT (interphone) exposé à des risques connus. Mettre à jour le firmware, désactiver UPnP, isoler en VLAN IoT et ne pas exposer sur Internet.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^2Wire .*","comment":"CPE/ADSL 2Wire généralement en fin de vie. Remplacer si possible ; sinon activer le mode bridge, désactiver UPnP/Telnet/HTTP et restreindre l’administration à un VLAN de management.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^3Com .*","comment":"Équipements 3Com en fin de vie. Mettre à jour au dernier firmware disponible, désactiver Telnet/HTTP/SNMPv1/v2c, activer SSH/HTTPS/SNMPv3 et limiter l’accès d’administration (ACL/VLAN).","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^3M .* thermostat$","comment":"Thermostat connecté. Mettre à jour le firmware, désactiver l’accès distant non chiffré, isoler en VLAN IoT et bloquer l’exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"4G Systems XSBoxGO+ WAP","comment":"Point d’accès ancien. Mettre à jour le firmware, désactiver WPS/Telnet, forcer WPA2/WPA3 et limiter l’admin à un réseau de management.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Aastra .*","comment":"Téléphones/DECT Aastra. Mettre à jour le firmware, forcer TLS/SRTP, désactiver l’auto-provisioning non chiffré (TFTP/HTTP), limiter l’admin par ACL/VLAN VoIP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"AcBel or Comtrend powerline Ethernet adapter","comment":"Adaptateurs CPL. Mettre à jour, définir un mot de passe réseau CPL fort, isoler du LAN sensible et éviter l’exposition de services de gestion.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Aceex BR41 broadband router","comment":"Routeur grand public ancien. Remplacer ou mettre à jour, désactiver UPnP/administration WAN et utiliser le mode bridge derrière un routeur fiable.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Acer S5200 projector","comment":"Projecteur réseau. Désactiver services inutiles (Telnet/HTTP), isoler sur VLAN audiovisuel et restreindre l’admin par ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Acme Packet Net-Net 4250 VoIP session border controller","comment":"SBC critique. Mettre à jour au dernier train supporté, activer TLS/SRTP, durcir SIP, restreindre l’admin (ACL/VPN) et sauvegarder la config.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Acorp W400G or W422G.*","comment":"Modem/routeur ADSL ancien (Linux 2.4). Remplacer ; sinon désactiver UPnP, Telnet et administration WAN.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Actiontec .*","comment":"CPE/routeur Actiontec. Mettre à jour, désactiver UPnP/WPS/administration WAN, préférer le mode bridge et filtrer l’accès d’admin.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Adaptec .*","comment":"Contrôleur/serveur de stockage Adaptec. Mettre à jour le firmware, isoler l’interface de management, activer HTTPS/SSH et gérer les comptes.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"ADIC Scalar 1000 tape library remote management unit","comment":"Bibliothèque de bandes. Isoler sur réseau de management, activer HTTPS/SSH, mettre à jour le firmware et restreindre par ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^ADSL modem: .*","comment":"Modem ADSL grand public. Remplacer si EoL, forcer le mode bridge derrière un routeur sécurisé et désactiver UPnP/administration WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^ADSL router: .*","comment":"Routeur ADSL ancien. Mettre à jour au dernier firmware, désactiver services non chiffrés et limiter l’admin par ACL/VLAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Adtran .*","comment":"Équipements Adtran (AOS). Mettre à jour AOS, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre l’admin à un VLAN de management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Advanced Illumination DCS-100E lighting controller","comment":"Automate/contrôleur d’éclairage. Isoler en OT, bloquer l’accès Internet, mettre à jour le firmware et journaliser l’accès.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Aerohive HiveOS .*","comment":"WLAN Aerohive/Extreme (HiveOS). Mettre à jour au train recommandé, activer 802.1X/WPA2-Enterprise ou WPA3, restreindre l’admin et surveiller les AP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Aethra .*","comment":"Matériel VoIP/visioconférence Aethra. Mettre à jour firmware, forcer chiffrement (TLS/SRTP), limiter exposition et durcir les comptes.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Agfa DryStar 5500 printer","comment":"Imprimante médicale. Isoler sur VLAN dédié, désactiver services non requis (FTP/Telnet/RAW), activer IPP/HTTPS si disponible et gérer SNMPv3.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Airaya .*","comment":"Pont radio. Mettre à jour, désactiver services en clair et restreindre l’admin par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Airlink101 APS MFP210 .*","comment":"Serveur d’impression multi-fonctions. Mettre à jour, désactiver protocoles non chiffrés et limiter l’accès au sous-réseau d’impression.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^AirLive WT-2000R.*","comment":"Routeur Wi-Fi grand public ancien. Remplacer ou au minimum désactiver UPnP/WPS et l’admin WAN, appliquer le dernier firmware.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^AirMagnet SmartEdge wireless sensor.*","comment":"Capteur Wi-Fi. Mettre à jour, segmenter la gestion, forcer SSH/HTTPS et limiter l’accès aux hôtes d’administration.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"AirSpan ProST WiMAX access point","comment":"Équipement WiMAX ancien. Vérifier fin de vie, durcir la gestion et planifier une modernisation.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Airvana C1-600-RT signal booster.*","comment":"Répéteur cellulaire. Mettre à jour, isoler en VLAN IoT et bloquer l’admin depuis Internet.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^AKCP sensorProbe2 .*","comment":"Sonde environnementale. Mettre à jour, changer les identifiants par défaut, activer HTTPS/SNMPv3 et isoler sur réseau de management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Alaxala AX2400S-series switch","comment":"Switch L2/L3. Mettre à jour, activer SSH/HTTPS/SNMPv3, désactiver services en clair et restreindre l’admin à un VLAN dédié.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Alcatel 4035 VoIP phone","comment":"Téléphone IP ancien. Mettre à jour, forcer TLS/SRTP et isoler sur VLAN VoIP.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Alcatel 4400 PBX .*","comment":"PBX ancien. Mettre à jour, désactiver accès distant non chiffré, contrôler les comptes et isoler l’admin.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Alcatel-Lucent 7750 Service Router .*","comment":"Routeur opérateur (SR OS). Appliquer versions maintenues, activer chiffrement management, restreindre par ACL et journaliser.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Alcatel-Lucent OmniPCX .*","comment":"PBX/Call manager Alcatel-Lucent. Mettre à jour (Linux embarqué), forcer TLS/SRTP et cloisonner l’interface d’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Alcatel-Lucent OmniSwitch 6000.*","comment":"Switch Alcatel-Lucent ancien. Mettre à jour, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre l’admin.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Alcatel-Lucent OmniSwitch 6850.*","comment":"Switch Alcatel-Lucent. Appliquer correctifs, durcir management et limiter services en clair.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Alcatel OmniStack 6024 .*","comment":"Switch/variante multi-marques. Mettre à jour et durcir la gestion (SSH/HTTPS/SNMPv3), restreindre par ACL.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Alcatel OmniSwitch 7000","comment":"Switch ancien. Mettre à jour et restreindre l’admin au réseau de management.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Alcatel OneTouch Y580D Wireless hotspot","comment":"Hotspot 3G/4G. Mettre à jour, désactiver WPS/UPnP et limiter l’admin via ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Alcatel SpeedTouch 510 DSL modem","comment":"Modem ADSL ancien. Remplacer, activer le mode bridge et bloquer l’admin depuis Internet.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Alcatel SpeedTouch Pro ADSL Modem","comment":"Modem ADSL très ancien. Décommissionner et remplacer.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Allen(-| )Bradley .*","comment":"Automates/PLC industriels. Isoler en réseau OT, interdire l’accès Internet, appliquer correctifs fournis et contrôler strictement l’admin (VPN/jump-host).","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Allied Telesis AlliedWare .*","comment":"Équipement Allied Telesis (AlliedWare). Mettre à jour l’OS, activer SSH/HTTPS/SNMPv3 et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Allied Telesis AT-8000S.*","comment":"Switch manageable multi-marques (OEM). Mettre à jour firmware, désactiver Telnet/HTTP et limiter l’admin par ACL/VLAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Allied Telesis AT-9000.*","comment":"Switch AT-9000. Mettre à jour, forcer SSH/HTTPS/SNMPv3 et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Allied Telesyn .*","comment":"Équipements Allied Telesyn (ancien branding). Mettre à jour/moderniser, durcir management et supprimer services en clair.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Allnet 2210 webcam.*","comment":"Webcam IP ancienne. Mettre à jour, changer identifiants par défaut, désactiver accès WAN et isoler en VLAN IoT.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Allworx 9212 VoIP phone","comment":"Téléphone IP. Mettre à jour, forcer TLS/SRTP et isoler sur VLAN VoIP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Alvarion .*","comment":"Équipements sans-fil/ WiMAX Alvarion anciens. Vérifier support, sécuriser management et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Amazon Fire TV( or Kindle Paperwhite)?$","comment":"Appareil grand public. Mettre à jour OTA, désactiver services de debug et empêcher toute exposition de ports vers Internet (VLAN IoT recommandé).","severity":"info","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Amazon Linux AMI 2018.03 (Linux 4.14)","comment":"Distribution Amazon Linux 1 en fin de vie. Mettre à niveau vers une version supportée (AL2023/AL2) et appliquer les correctifs de sécurité.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Ambit DOCSIS 2\\.0 cable modem.*","comment":"Modem câble DOCSIS 2.0 obsolète. Remplacer par DOCSIS 3.1+, désactiver l’admin à distance et changer identifiants par défaut.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Ambit U10C018 .*","comment":"Modem câble ancien. Remplacer et bloquer l’accès d’administration depuis le WAN.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^AmigaOS 3\\..*","comment":"Système d’exploitation historique non maintenu. Isoler totalement et éviter tout rôle réseau exposé.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"AMX AVB-RX-DXLINK-HDMI audio/video receiver","comment":"Récepteur A/V connecté. Mettre à jour, désactiver services de debug et isoler sur VLAN audiovisuel.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Android TV OS 11 (Linux 4.19)","comment":"Android TV. Mettre à jour OTA, désactiver débogage et éviter l’exposition WAN (VLAN IoT).","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Android 1\\..*","comment":"Android 1.x très ancien et vulnérable. Décommissionner l’équipement.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 2\\..*","comment":"Android 2.x obsolète. Remplacer l’appareil et supprimer toute exposition réseau.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 3(\\.| |\\().*","comment":"Android 3.x (Honeycomb) obsolète. Décommissionner/migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 4(\\.| |\\().*","comment":"Android 4.x obsolète. Planifier un remplacement ; ne pas exposer de services.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 5(\\.| |\\().*","comment":"Android 5.x obsolète. Remplacer ; sinon isoler strictement et bloquer ports entrants.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 6(\\.| |\\().*","comment":"Android 6.x obsolète. Remplacer ; éviter toute exposition Internet.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 7(\\.| |\\().*","comment":"Android 7.x obsolète. Planifier le remplacement et isoler en VLAN IoT si maintien temporaire.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 8(\\.| |\\().*","comment":"Android 8.x ancien. Vérifier le patch level, limiter l’exposition et envisager une mise à niveau.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 9(\\.| |\\().*","comment":"Android 9.x ancien. Vérifier le patch level OEM et limiter les services exposés.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 10(\\.| |\\().*","comment":"Android 10 ancien mais fréquent. Vérifier le patch level, désactiver ADB et éviter toute exposition WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 11(\\.| |\\().*","comment":"Android 11 encore courant. Maintenir à jour, restreindre l’admin et bloquer ports entrants.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Android 12(\\.| |\\().*","comment":"Android 12 récent. Appliquer mises à jour de sécurité et éviter toute exposition de services inutiles.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Anova Precision Cooker (High-Flying WLAN module)","comment":"Objet connecté cuisine. Mettre à jour, désactiver accès cloud superflu et isoler en VLAN IoT.","severity":"info","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Anue X/GEM ethernet network simulator","comment":"Équipement de labo réseau. Isoler sur réseau de test, mettre à jour et restreindre l’administration.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^APC (?:7940|7723|9340|AP9606|AP9619) Network Management Card.*","comment":"Carte de management APC (AOS ancien). Mettre à jour AOS, activer HTTPS/SSH/SNMPv3 et restreindre l’accès d’admin (ACL/VPN).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^APC Network Management Card( 3)?( \\(AOS.*\\))?$","comment":"Carte de management APC. Mettre à jour AOS, désactiver HTTP/Telnet/SNMPv1/v2c, activer HTTPS/SSH/SNMPv3 et cloisonner l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^APC AOS .*","comment":"Système AOS APC (version précisée). Mettre à jour au dernier build sécurisé et durcir l’accès (HTTPS/SSH/ACL).","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^APC AP(7851|7900-series|7920|7930) .*","comment":"PDU APC géré. Mettre à jour AOS/NMC, activer HTTPS/SSH, désactiver services en clair et restreindre l’admin au réseau de management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^APC NetBotz 200 .*","comment":"Sonde APC NetBotz. Mettre à jour, changer identifiants par défaut, activer HTTPS/SNMPv3 et isoler.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^APC Smart-UPS.*","comment":"UPS géré. Mettre à jour la carte NMC, activer HTTPS/SSH et limiter l’accès d’admin par ACL/VLAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"APC Silicon DP320E UPS","comment":"UPS. Mettre à jour/isoler l’interface de management et restreindre l’accès.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"APC Smart-UPS RT 8000 RM XL UPS","comment":"UPS critique. Mettre à jour la NMC, activer HTTPS/SSH et cloisonner.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^APC power distribution unit .*","comment":"PDU APC ancien. Mettre à jour, activer HTTPS/SSH et restreindre l’admin.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Apple AirPort .*","comment":"Apple AirPort/Time Capsule en fin de vie. Mettre à jour au dernier firmware dispo, désactiver l’admin WAN/UPnP et remplacer à terme.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple Time Capsule NAS device( \\(NetBSD 4\\.99\\))?$","comment":"Time Capsule NAS en fin de vie. Désactiver le partage exposé, sauvegarder/migrer et remplacer.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Apple A/UX .*","comment":"UNIX Apple historique non maintenu. Isoler et éviter tout usage exposé.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Apple iOS (1|2|3|4)(\\.| |$).*","comment":"iOS très ancien. Décommissionner ou isoler totalement et bloquer toute exposition.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple iOS (5|6|7|8|9|10|11|12|13|14)(\\.| |$).*","comment":"iOS ancien/EoL. Migrer vers une version supportée ; éviter toute exposition réseau.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple iOS 15(\\.| |$).*","comment":"iOS 15 ancien mais encore présent sur certains appareils. Maintenir au dernier 15.x disponible et planifier migration vers iOS récent.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple iOS 16(\\.| |$).*","comment":"iOS 16 relativement récent. Appliquer les mises à jour et limiter les services exposés.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Apple iPhone OS .*","comment":"Ancien nom d’iOS (versions 1–3). Considérer comme obsolète et décommissionner.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple iPod touch .*","comment":"Appareil iPod touch ancien. Ne pas exposer de services et planifier le retrait.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Apple macOS 10\\.12.*","comment":"macOS 10.12 (Sierra) EoL. Migrer vers une version supportée et bloquer l’exposition de services.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple macOS 10\\.13.*","comment":"macOS 10.13 (High Sierra) EoL. Planifier mise à niveau.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple macOS 10\\.14.*","comment":"macOS 10.14 (Mojave) EoL. Migrer vers macOS récent.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple macOS 10\\.15.*","comment":"macOS 10.15 (Catalina) EoL. Mettre à niveau et éviter exposition de services.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple macOS 11.*","comment":"macOS 11 (Big Sur) ancien. Maintenir hors exposition et migrer vers 13+ si possible.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple macOS 12.*","comment":"macOS 12 (Monterey) ancien. Appliquer derniers correctifs disponibles et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple macOS 13.*","comment":"macOS 13 (Ventura). Appliquer mises à jour de sécurité et limiter les services exposés.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Apple Mac OS (8|9)\\..*","comment":"Mac OS classique (8/9) obsolète. Isoler totalement et supprimer toute exposition.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple Mac OS X .*","comment":"Mac OS X 10.x ancien (pré-macOS). Considérer comme EoL et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple OS X .*","comment":"OS X (10.8–10.12) EoL. Migrer vers macOS supporté et désactiver services non chiffrés.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Apple TV 5(\\..*)?$","comment":"Apple TV de génération 5. Mettre à jour tvOS si possible, ne pas exposer de ports depuis Internet et isoler (VLAN IoT).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Apple TV 5.2.1 or 5.3","comment":"Apple TV (firmwares anciens). Mettre à jour et empêcher toute exposition WAN.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Apple tvOS 13.4 (Darwin 19.4.0)","comment":"tvOS ancien. Mettre à niveau vers une version récente et éviter exposition de services.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Apple watchOS 6.2 (Darwin 19.2.0)","comment":"watchOS ancien. Mettre à jour si supporté et éviter toute exposition réseau.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Apple watchOS 7(\\.| |$).*","comment":"watchOS 7 ancien. Mettre à jour si possible et ne pas exposer de services.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"ARCA CM18 Cash Recycler (Windows CE)","comment":"Équipement financier critique sur Windows CE obsolète. Isoler sur réseau PCI/OT, interdire toute exposition Internet, mettre à jour micrologiciel si disponible et planifier un remplacement vers un OS supporté.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Arcadyan .*","comment":"CPE/routeurs Arcadyan. Mettre à jour le firmware, désactiver WPS/UPnP/administration WAN, forcer WPA2/3 et limiter l’admin à un VLAN de management.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"ArcaOS 5","comment":"Dérivé d’OS/2. Éviter SMB1/NetBIOS, activer uniquement protocoles chiffrés côté réseau, isoler et restreindre l’admin par ACL/VPN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Arcor-Easy Box A 300 WLAN wireless ADSL router","comment":"Routeur ADSL grand public ancien. Remplacer ; sinon désactiver UPnP/WPS et l’admin WAN, appliquer le dernier firmware.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Areca ARC-1212 or ARC-1222 RAID controller or Siemens HiPath 3500 PBX","comment":"Contrôleur RAID / PBX. Mettre à jour le firmware, isoler l’interface de management, activer HTTPS/SSH et gérer les comptes fortifiés.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Argon iNet3+ internet radio","comment":"Radio connectée. Mettre à jour et isoler en VLAN IoT ; bloquer l’accès depuis Internet.","severity":"info","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Argosy HD363N NAS device","comment":"NAS grand public ancien. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS si possible et isoler sur VLAN d’impression/NAS.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Arris .*","comment":"Modems/routeurs Arris (souvent gérés par l’opérateur). Demander la mise à jour au dernier firmware, désactiver l’admin à distance/UPnP, changer identifiants par défaut et éviter l’exposition WAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Aruba (ArubaOS|ArubaOS-CX|ArubaOS-Switch|Instant|Instant On|IAP|100-series|200 |3400|6000).*","comment":"Wi-Fi Aruba. Mettre à jour au train recommandé, forcer WPA2-Enterprise/WPA3, désactiver WPS/Telnet/HTTP, restreindre l’admin (ACL/VPN) et activer 802.1X pour le management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Aruba, Cisco, or Netgear switch (Linux 3.10 or 4.4)","comment":"Switch SMB embarquant Linux. Mettre à jour le firmware, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre l’admin par ACL/VLAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^ArubaOS .*","comment":"Contrôleur/OS ArubaOS. Appliquer le dernier patch, durcir l’accès d’admin et vérifier les CVE actives.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^As(us|US) .*","comment":"Routeurs/WAP Asus. Mettre à jour (Merlin/stock), désactiver WPS/UPnP/administration WAN, forcer WPA2/3 et limiter l’admin à un VLAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Asus O!Play media player (Linux 2.6.12)","comment":"Lecteur multimédia ancien. Éviter l’exposition, isoler en VLAN IoT et bloquer services non chiffrés.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"ASUS RT-N11 EZ or D-Link DI-524 WAP, or LevelOne FBR-1415TX router","comment":"WAP/routeurs anciens. Remplacer ; sinon désactiver UPnP/WPS et l’admin WAN.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Atari Unix System V Release 4.0","comment":"UNIX historique. Isoler totalement, aucune exposition réseau, réserver au labo/émulation.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Atcom AT-320 VoIP phone","comment":"Téléphone IP. Mettre à jour, forcer TLS/SRTP et isoler sur VLAN VoIP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"A-Tec MS347S or Mapower KC31N NAS device","comment":"NAS anciens. Désactiver SMB1/FTP, activer SMB3/HTTPS si possible, isoler et planifier le remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"AT&T 3G MicroCell WAP","comment":"Femtocell 3G fin de vie. Décommissionner et retourner à l’opérateur ; ne pas exposer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"AT&T BGW210 voice gateway","comment":"CPE opérateur. Désactiver UPnP, restreindre l’admin à LAN, changer les identifiants et surveiller les mises à jour opérateur.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"AT&T NetGate SG8100 router","comment":"Appliance routeur (pfSense/OEM). Mettre à jour l’OS, sauvegarder/configurer pare-feu, limiter l’admin par VPN/ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"AT&T U-Verse set-top box (Windows CE 5.0)","comment":"Décodeur Windows CE obsolète. Isoler en VLAN TV/IPTV, bloquer accès depuis Internet.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Audio Block CVR100+ internet radio","comment":"Radio connectée. Mettre à jour et isoler en VLAN IoT ; éviter exposition WAN.","severity":"info","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Audio[Cc]odes .*","comment":"MediaPack/Mediant VoIP. Mettre à jour firmware, forcer TLS/SRTP, désactiver provisioning non chifré (TFTP/HTTP) et limiter l’admin par ACL/VLAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Audiocodes MP-1XX-series VoIP adapter or Brother HL-2270DW printer","comment":"Adaptateur VoIP/Imprimante. Mettre à jour, forcer TLS/SRTP côté VoIP ; côté imprimante, désactiver RAW/LPD et activer IPPS/HTTPS.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"AudioControl D3400 network amplifier","comment":"Amplificateur réseau. Mettre à jour, désactiver services de debug, isoler en VLAN audiovisuel et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Audio receiver: Bose Soundtouch 20, Bowers & Wilkins Zeppelin Air, Denon AVR-1900-series, Marantz NR1602, or Pioneer VSX-921","comment":"Récepteurs audio réseau. Mettre à jour, désactiver services non requis, isoler en VLAN IoT/AV et bloquer l’accès WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Avaya .*","comment":"Équipements Avaya (PBX/ERS/IP Office). Mettre à jour au dernier build supporté, activer TLS/SRTP/HTTPS/SSH, restreindre l’admin (ACL/VPN) et sauvegarder la config.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^AVM (Fritz|FRITZ!).*","comment":"FRITZ!Box/Repeater. Mettre à jour FritzOS, désactiver WPS/UPnP/administration à distance, forcer WPA2/3 et activer notifications de sécurité.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Avocent(\\/Cyclades)? .*","comment":"Console/KVM Avocent. Mettre à jour firmware, activer SSH/HTTPS, désactiver Telnet/HTTP et isoler l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^AVtech .*","comment":"Enregistreur/sonde AVtech. Mettre à jour, changer identifiants par défaut, activer HTTPS et bloquer l’accès Internet direct.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^AXIS .*","comment":"Caméras/serveurs AXIS. Mettre à jour, désactiver comptes par défaut, activer HTTPS/SRTP si dispo et isoler en VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Axis .*","comment":"Caméras AXIS. Mettre à jour firmware, activer HTTPS/802.1X, isoler et journaliser l’accès.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Barracuda .*","comment":"Appliances Barracuda (WAF/Spam/WebFilter/Load Balancer). Mettre à jour, activer HTTPS/SSH, restreindre l’admin et vérifier politiques/modèles de sécurité.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Barrelfish before release2011-09-02","comment":"OS de recherche ancien. Isoler et éviter toute exposition réseau.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Basler ruL 2098-10gc GigE Vision Ethernet camera","comment":"Caméra industrielle. Mettre à jour, activer chiffrement si dispo et isoler en réseau OT/vidéosurv.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Bay Networks .*","comment":"Équipements Bay Networks anciens (BayStack/Annex). Mettre à jour si possible, désactiver Telnet/HTTP/SNMPv1/v2c et planifier le remplacement.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"BeaconMedaes TotalAlert medical gas alarm","comment":"Système médical. Isoler sur réseau biomédical, mettre à jour, activer authentification forte et journaliser les accès.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Beat MIB MusicButler","comment":"Appareil audio réseau. Isoler en VLAN IoT et éviter exposition WAN ; mettre à jour si disponible.","severity":"info","last_review":"2025-08-15"}
+{"match_type":"literal","match":"BECK IPC@CHIP","comment":"Plateforme embarquée. Durcir piles réseau, isoler et mettre à jour le firmware/SDK.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Belkin .*","comment":"Équipements Belkin grand public. Mettre à jour, désactiver WPS/UPnP/administration WAN et planifier un remplacement si modèles anciens.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Bell Labs Plan 9.*","comment":"Plan 9 (toutes éditions). Isoler totalement, éviter tout rôle exposé.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Billion .*","comment":"Routeurs/ADSL Billion. Mettre à jour, désactiver UPnP/WPS et l’admin WAN, planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^BinTec .*","comment":"Routeurs/WAP BinTec. Mettre à jour, activer SSH/HTTPS/SNMPv3, restreindre l’admin par ACL/VLAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^BlackBerry 7\\..*","comment":"BlackBerry OS 7.x obsolète. Décommissionner et retirer tout accès réseau sensible.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^BlackBerry 10(\\.| |$).*","comment":"BlackBerry 10 ancien. Isoler, limiter aux usages non sensibles et planifier le retrait.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^BlackBerry Tablet OS .*","comment":"BlackBerry Tablet OS obsolète. Décommissionner et éviter toute exposition réseau.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"BlackBoard AT3000 POS device","comment":"POS. Mettre à jour, isoler sur réseau PCI, activer chiffrement des flux et journaliser les accès.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Blackboard transaction system serial-to-IP converter","comment":"Convertisseur série-IP. Isoler en réseau OT, désactiver services en clair et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"BlackBox Coalesce wireless collaborations system (Android 5.1)","comment":"Système de collaboration sur Android ancien. Mettre à jour si possible et isoler en VLAN AV.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"BlueArc Titan 2100 NAS device","comment":"NAS ancien. Désactiver SMB1/NFS non sécurisé, activer chiffrement et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Bluebird SuperDOS","comment":"OS très ancien. Isoler totalement ; aucun rôle réseau.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Bluebottle OS","comment":"OS de recherche (AOS/Oberon). Isoler et éviter exposition réseau.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Blue Coat .*","comment":"Appliances Blue Coat (ProxySG/Director/PacketShaper/SGOS). Mettre à jour, restreindre l’admin, activer TLS fort et appliquer politiques de sécurité.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Bomara Tracker 2740 multipurpose server (Linux)","comment":"Serveur embarqué. Mettre à jour noyau/paquets, désactiver services inutiles et isoler.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Bosch Divar security system","comment":"Système vidéo sécurité. Mettre à jour, activer HTTPS, isoler en VLAN caméras et bloquer l’accès Internet direct.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Bosch IP camera","comment":"Caméra IP. Mettre à jour, changer identifiants par défaut, activer HTTPS/802.1X et isoler.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Bose SoundTouch 20 audio receiver","comment":"Récepteur audio réseau. Mettre à jour, désactiver services de debug et isoler en VLAN IoT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Boundless Technologies NetTerminal text terminal","comment":"Terminal texte. Isoler ; n’exposer aucun service d’admin ou protocole hérité.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"British Gas GS-Z3 data logger","comment":"Enregistreur de données. Mettre à jour, isoler en VLAN IoT/OT et bloquer accès WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Broadband router (Allied Data CopperJet, Belkin F5D7632-4, Intracom Jetspeed 500i, or Iskratel Sinope568 or Proteus932); or Adva Optical FSP 150CC-825 router","comment":"Routeurs grand public/accès anciens. Remplacer ; sinon désactiver UPnP/WPS et l’admin WAN.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Broadband router (VxWorks): Dick Smith Electronics XH1169, Netgear WGR614v6, or Neuf Box Trio 3C","comment":"Routeurs VxWorks anciens. Remplacer et éviter toute exposition WAN.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"BroadMax LinkMAX HSA300A-2 ADSL modem","comment":"Modem ADSL ancien. Remplacer ; bloquer l’admin depuis Internet.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Brocade(\\/Foundry)? .*","comment":"Équipements Brocade/Foundry (FabricOS/IronWare/ICX/Nit). Mettre à jour OS, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Brother .*printer","comment":"Imprimantes Brother. Mettre à jour, désactiver RAW/LPD/Telnet, activer IPPS/HTTPS, restreindre à VLAN impression et SNMPv3.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Brother .*print server","comment":"Serveurs d’impression Brother. Mettre à jour, désactiver protocoles en clair et limiter l’accès au sous-réseau impression.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Brother or HP printer (VxWorks)","comment":"Imprimantes sur VxWorks anciennes. Désactiver services en clair et planifier le remplacement.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Brother printer (VxWorks)","comment":"Imprimante VxWorks ancienne. Limiter au VLAN impression et éviter exposition WAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"BSDI BSD/OS 4.2","comment":"BSDI historique. Isoler totalement ; aucun service exposé.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"BT Vision+ set-top box (Windows CE 5.0.1400)","comment":"Décodeur Windows CE obsolète. Isoler en VLAN TV et bloquer accès Internet direct.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Buffalo .*","comment":"NAS/commutateurs Buffalo. Mettre à jour, désactiver SMB1/Telnet/FTP, activer SMB3/HTTPS et isoler en VLAN stockage.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Burny CNC controller (Microsoft Windows XP Embedded)","comment":"Contrôleur CNC sur XP Embedded. Isoler en OT, interdire accès Internet, restreindre via jump-host et planifier migration.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Bush BFSAT01HD satellite receiver","comment":"Récepteur satellite. Isoler en VLAN AV et bloquer exposition WAN.","severity":"info","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"cab A4+/300 label printer","comment":"Imprimante d’étiquettes. Désactiver RAW/LPD, privilégier IPPS/HTTPS et isoler sur VLAN impression.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Cabletron .*|^Cabletron or Enterasys switch.*","comment":"Switches Cabletron/Enterasys anciens. Mettre à jour si possible, désactiver Telnet/HTTP/SNMPv1/v2c et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"CAEN SY2527 high voltage power supply","comment":"Alimentation HV. Isoler en réseau OT, activer authentification forte/HTTPS et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Caldera Open Unix 7.1.0","comment":"UNIX commercial ancien. Isoler, limiter services et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Calix C7 switch (R5.0)","comment":"Plateforme d’accès. Mettre à jour au dernier R-train supporté, restreindre management et journaliser.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Canon imageRUNNER ADVANCE .*","comment":"Copieurs Canon récents. Mettre à jour, activer IPPS/HTTPS/SNMPv3, désactiver RAW/FTP/Telnet et restreindre à VLAN impression.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Canon imageRUNNER .*|^Canon i-SENSYS .*|^Canon imageCLASS .*|^Canon MF.* printer|^Canon PIXMA .*","comment":"Imprimantes Canon. Mettre à jour, désactiver RAW/LPD/Telnet, activer IPPS/HTTPS et restreindre à VLAN impression.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Canon .*camera$|^Canon VB-C300 IP camera$","comment":"Caméras Canon. Mettre à jour, changer identifiants par défaut, activer HTTPS/802.1X et isoler.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Casio QT-6000 or QT-6100 point-of-sale machine","comment":"POS. Mettre à jour, isoler réseau PCI, chiffrer les flux et appliquer durcissement système.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Cayman Systems GatorBox CS","comment":"Passerelle AppleTalk historique. Isoler totalement ; aucun rôle réseau exposé.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Ceedtec CD-730 WiMAX WAP (Linux 2.6.23)","comment":"WAP WiMAX ancien. Éviter exposition et planifier modernisation.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Chamberlain myQ garage door opener","comment":"Objet connecté. Activer 2FA si dispo, isoler en VLAN IoT et bloquer accès depuis Internet non nécessaire.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Check Point .*","comment":"Appliances/OS Check Point (GAiA/NGX/IPSO/SBox/UTM). Mettre à jour au dernier JHF, désactiver management non chiffré, restreindre l’admin et vérifier politiques VPN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Chip PC XtremePC thin client","comment":"Client léger. Mettre à jour l’image, désactiver services inutiles et restreindre l’accès d’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"CipherLab 5100 time and attendance terminal","comment":"Badgeuse. Mettre à jour, isoler en VLAN OT et bloquer tout accès WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Cisco (IOS|IOS-XE|IOS XR|NX-OS|AireOS).*","comment":"Systèmes d’exploitation Cisco. Appliquer trains maintenus (SM/M/T), activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre l’admin par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Cisco (Catalyst|[0-9]{3,4} router|[0-9]{3,4} switch|C[0-9]{3,4}|2900XL|3500 XL|7200|6509|6506|uBR|ASR|CRS|Content Engine|ACE|WAE|SCE|MDS|Nexus|NX-OS).*","comment":"Routeurs/switches Cisco. Mettre à jour, durcir management (SSH/HTTPS/SNMPv3), segmenter (VLAN/VRF) et appliquer ACL sur plans de contrôle/management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Cisco (Aironet|AireOS|Wireless LAN Controller|Virtual Wireless LAN Controller|AP).*","comment":"Wi-Fi Cisco (AP/WLC). Mettre à jour, forcer WPA2-Enterprise/WPA3, désactiver WPS/Telnet/HTTP, isoler l’admin et activer 802.1X.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Cisco (ASA|Adaptive Security Appliance|PIX).*","comment":"Pare-feu Cisco ASA/PIX. Mettre à jour (train LTS/SM), désactiver SSL/TLS faibles, restreindre management et vérifier politiques NAT/VPN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Cisco (IP Phone|Unified IP Phone|CP-|VG).*","comment":"Téléphones/terminaux Cisco. Mettre à jour, forcer TLS/SRTP, désactiver auto-provisioning non chiffré, isoler sur VLAN VoIP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Cisco (RV|SG|SF|SLM|SRW|SRP|SOHO).*","comment":"Gamme SMB Cisco. Mettre à jour firmware, activer SSH/HTTPS, désactiver UPnP/HTTP/Telnet et restreindre l’admin par ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Cisco (DOCSIS|EPC|DPC|EPC[0-9]+|Cadant|uBR).*","comment":"CM/CMTS Cisco. Mettre à jour, désactiver admin à distance, changer identifiants par défaut et suivre recommandations de l’opérateur.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cisco Wireless LAN controller","comment":"Contrôleur Wi-Fi Cisco. Mettre à jour, durcir management et forcer WPA2-Enterprise/WPA3.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cisco Wireless LAN Controller","comment":"Contrôleur Wi-Fi Cisco. Mettre à jour et restreindre l’admin (ACL/VPN).","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cisco AsyncOS 9.6 - 9.7","comment":"Version AsyncOS ancienne. Mettre à niveau vers version supportée et appliquer durcissement TLS/DMARC/DKIM.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Citrix (Access Gateway|Cloud Gateway Connector|NetScaler|XenServer).*","comment":"Équipements/logiciels Citrix. Mettre à jour (LTSR si possible), activer TLS fort, restreindre l’admin et vérifier vulnérabilités récentes.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"CMI Genus NEMA terminal","comment":"Terminal industriel. Isoler sur réseau OT, désactiver services non requis, restreindre l’admin via ACL/VPN et journaliser.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"C-Nav 3050 GPS receiver","comment":"Récepteur GPS connecté. Mettre à jour firmware, isoler en VLAN OT/IoT et bloquer accès Internet direct.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cobalt Qube 2700WG (Linux 2.0.34)","comment":"Appliance Linux très ancienne. Décommissionner ou isoler strictement, désactiver services en clair (Telnet/FTP/HTTP).","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cognex DataMan 200 ID reader (lwIP stack)","comment":"Lecteur code (lwIP). Mettre à jour firmware, isoler en VLAN OT, restreindre l’admin et surveiller communications sortantes.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cognitive CXI thermal printer","comment":"Imprimante thermique. Désactiver RAW/LPD/Telnet, activer IPPS/HTTPS, limiter au VLAN impression, SNMPv3 uniquement.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Comau C4G robot control unit","comment":"Contrôleur robot. Isoler en réseau OT, interdire accès Internet, segmenter par zones/ACL, appliquer correctifs constructeur.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Compal CG6640 cable modem","comment":"Modem câble opéré par FAI. Désactiver admin à distance/UPnP, changer identifiants et exiger firmware opérateur à jour.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Compaq iPAQ CP-2W Connection Point WAP","comment":"Point d’accès très ancien. Remplacer ; sinon désactiver WPS/UPnP, couper admin WAN et appliquer dernier firmware.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Compaq Tru64 UNIX.*","comment":"Tru64 UNIX en fin de vie. Isoler fortement, désactiver services hérités (Telnet/FTP/RCMD), n’autoriser que SSH/TLS et planifier migration.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^HP OpenVMS .*|^DEC OpenVMS .*","comment":"OpenVMS ancien. Activer SSH/TLS, désactiver DECnet IV/Telnet, isoler réseau et limiter privilèges ; planifier mise à niveau/migration.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Comtrend .*","comment":"Routeurs/ADSL Comtrend. Mettre à jour firmware, désactiver WPS/UPnP/administration WAN, forcer WPA2/3 et limiter l’admin par ACL/VLAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Conceptronic CHD3NET NAS device","comment":"NAS grand public ancien. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS, isoler sur VLAN stockage et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Consumer Electronics Linux Forum embedded Linux 2.4.20","comment":"Plateforme Linux 2.4 obsolète. Isoler strictement, filtrer sorties et planifier remplacement.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Control4 HC-300 home controller or Mobotix M22 camera","comment":"Contrôleur domotique / caméra. Mettre à jour, isoler VLAN AV/sécurité, désactiver accès WAN et forcer HTTPS/802.1X si disponible.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"CoRAID NAS device","comment":"Stockage AoE ancien. Isoler réseau stockage, restreindre management et planifier migration vers solution supportée.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Coyote Point .*Equalizer.*","comment":"Load balancer Equalizer (Coyote Point). Mettre à niveau firmware (EoL probable), restreindre management et placer derrière pare-feu.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cray UNICOS/mk 2.0.5.60","comment":"OS HPC ancien. Isoler totalement, filtrer strictement et limiter aux usages hors production exposée.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Crestron .*","comment":"Contrôleurs/écrans Crestron. Mettre à jour, désactiver services non requis, isoler VLAN AV et restreindre l’admin (ACL/VPN).","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^CyanogenMod .*","comment":"ROM CyanogenMod obsolète. Interdire données sensibles, isoler réseau et migrer vers Android supporté/LineageOS récent.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cyberoam UTM firewall","comment":"Pare-feu Cyberoam (racheté). Mettre à jour au dernier build/SFOS, durcir TLS/SSH et planifier migration vers plateforme supportée.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cymphonix EX550 firewall","comment":"Pare-feu Cymphonix (éditeur inactif). Remplacer ; isoler et limiter l’admin en attendant.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Cypress Solutions CTM-15X modem (OpenWrt firmware)","comment":"Modem OpenWrt. Mettre à jour à build récent, désactiver UPnP/WPS/HTTP/Telnet, restreindre l’admin et vérifier modules installés.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Dahua or Amcrest network video recorder (Linux)","comment":"NVR vidéo. Mettre à jour, changer identifiants par défaut, activer HTTPS/RTSP sécurisé, isoler VLAN caméras et bloquer P2P cloud si non requis.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Daikin DKN Cloud Wi-Fi Adaptor","comment":"Passerelle CVC. Mettre à jour, isoler VLAN OT/IoT, désactiver exposition WAN et limiter l’admin à sous-réseau maintenance.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Data General DG/UX 4.11MU06","comment":"UNIX Data General en fin de vie. Isoler strictement et planifier migration.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Datalogic Kyman barcode scanner (Windows CE 5.0)","comment":"Scanneur sur Windows CE. Isoler, interdire Internet et planifier remplacement vers OS supporté.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Daysequerra M4.2SI radio","comment":"Équipement audio réseau. Mettre à jour, isoler en VLAN AV/IoT et bloquer accès WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^DD-WRT .*Linux 2\\.4.*","comment":"DD-WRT noyau 2.4 obsolète. Migrer vers build maintenu (>= 3.x), désactiver admin WAN, forcer HTTPS/SSH et couper UPnP/WPS.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^DD-WRT .*Linux (2\\.6|3\\.).*|^DD-WRT v24.*|^DD-WRT v30.*","comment":"DD-WRT récents. Mettre à jour régulièrement, désactiver admin WAN/UPnP/WPS, forcer WPA2/3 et limiter l’admin par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^DEC (Digital UNIX|OSF/1|Ultrix|TOPS-20|RSX-11M).*|^DECserver716 .*","comment":"Systèmes DEC historiques. Isoler totalement, désactiver services hérités et réserver à labo/compatibilité.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Decru Datafort firewall","comment":"Appliance chiffrement stockage. Mettre à jour firmware et restreindre l’admin ; envisager migration vers solution supportée.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Dell .* printer|^Develop ineo .* printer|^Fuji Xerox .* printer|^Epson .* printer|^DYMO .* printer|^Canon .* printer$","comment":"Imprimantes réseau. Désactiver RAW/LPD/Telnet/FTP, activer IPPS/HTTPS/SNMPv3, restreindre au VLAN impression et journaliser.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Dell Chassis Management Controller (CMC)","comment":"Contrôleur châssis. Mettre à jour, activer HTTPS/SSH, désactiver ciphers faibles, restreindre l’admin par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Dell DR[0-9]+.*","comment":"Appliances de sauvegarde Dell DR*. Mettre à jour, restreindre management, vérifier durcissement SMB/NDMP et sauvegarder config.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Dell (Remote Access Controller|DRAC).*|^Dell Embedded Remote Access.*|^Dell iDRAC 6.*|^Dell Integrated Remote Access Controller \\(iDRAC(5|6)\\)","comment":"BMC Dell DRAC/iDRAC (anciennes gén.). Mettre à jour, activer HTTPS/SSH, désactiver TLS/SSL faibles et isoler le réseau d’admin ; planifier mise à niveau.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Dell Integrated Remote Access Controller \\(iDRAC(7|8|9)\\)|^Dell Integrated Remote Access Controller \\(iDRAC7\\)|^Dell Integrated Remote Access Controller \\(iDRAC9\\)","comment":"BMC Dell iDRAC récentes. Mettre à jour régulièrement, restreindre l’admin, activer MFA si dispo et journaliser vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Dell EqualLogic.*|^Dell PowerVault .*|^Dell EMC SC[0-9]+.*|^EMC (Celerra|VNX).*","comment":"Stockage Dell/EMC. Mettre à jour microcodes, désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS/SSH/SNMPv3, isoler réseau stockage/management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Dell PowerConnect.*|^Force10 .*|^FS S5850 switch.*|^Fujian Ruijie Star-S2800.*|^Enterasys .*switch|^Extreme Networks .*","comment":"Commutateurs réseau. Mettre à jour OS, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP/SNMPv1/v2c, segmenter (VLAN/VRF) et ACL de management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Dell Sonicwall NSA 220 firewall","comment":"Pare-feu SonicWall ancien. Mettre à jour au dernier firmware supporté, durcir TLS/SSH et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Dell X1052P switch","comment":"Switch Dell récent. Mettre à jour, activer SSH/HTTPS/SNMPv3 et restreindre l’admin par ACL/VLAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Denon .*|^Bose .*|^Marantz .*|^Pioneer .*|^Grace Digital .*|^Audio receiver:.*|^Dolby Digital Cinema Sound Processor CP750$","comment":"Équipements audio réseau. Mettre à jour, désactiver services non requis/UPnP, isoler VLAN AV/IoT et bloquer exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Denver Electronics AC-5000W MK2 camera","comment":"Caméra IP. Mettre à jour, changer mots de passe par défaut, activer HTTPS/802.1X et isoler en VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Deutsch Telekom MR 400 set-top box","comment":"Décodeur opérateur. Isoler sur VLAN TV/IPTV et éviter exposition Internet.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Digi (AnywhereUSB|Connect|ConnectPort|PortServer|One SP|TransPort|WR|NET\\+OS).*","comment":"Passerelles/convertisseurs Digi. Mettre à jour, activer SSH/HTTPS, désactiver Telnet/HTTP et restreindre l’admin au réseau management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Digital Loggers, Inc. power controller (firmware 1.2.7)","comment":"PDU/contrôleur ancien. Mettre à jour, désactiver HTTP/Telnet, activer HTTPS/SSH et restreindre l’admin.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^DirecTV .*|^Dish Network .*","comment":"Box média (Linux anciens). Isoler en VLAN AV, bloquer accès WAN direct et mettre à jour si supporté.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^D-Link .*","comment":"Équipements D-Link (routeurs/WAP/switch/NAS). Mettre à jour, désactiver WPS/UPnP/Telnet/HTTP/gestion WAN, forcer WPA2/3, SNMPv3, et restreindre l’admin par ACL/VLAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"DMP XR500 remote alarm monitor","comment":"Superviseur alarme. Mettre à jour, isoler réseau sécurité, activer HTTPS et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^DragonFly BSD .*","comment":"DragonFly BSD versions listées anciennes. Isoler, mettre à jour vers version supportée ou migrer.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"DragonWave Horizon WAP or Mitel 5212 SIP Phone","comment":"WAP micro-ondes / téléphone SIP. Mettre à jour, forcer TLS/SRTP côté VoIP et isoler VLAN dédié.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"DrayTek Vigor 2930n wireless router","comment":"Routeur SMB. Mettre à jour, désactiver UPnP/WPS/gestion WAN, forcer WPA2/3 et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Draytek Vigor 2960 VPN firewall","comment":"Pare-feu VPN. Mettre à jour firmware, durcir suites TLS/IPsec et restreindre management par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Drayton MiGenie heating control unit","comment":"Contrôle chauffage IoT. Mettre à jour, isoler VLAN IoT et désactiver exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Dreambox DM7025+ satellite TV tuner","comment":"Tuner Linux ancien. Isoler en VLAN AV et éviter exposition Internet.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Drobo.*","comment":"NAS Drobo (éditeur en difficulté). Mettre à jour, désactiver SMB1/AFP anciens, isoler VLAN stockage et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"DVTel DVT-9540DW network camera","comment":"Caméra réseau. Mettre à jour, activer HTTPS/802.1X et isoler VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"EasyPath PON switch","comment":"Switch PON. Mettre à jour, restreindre management (SSH/HTTPS), désactiver Telnet/HTTP/SNMPv1/v2c et segmenter.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Eaton Powerware 9170 UPS","comment":"UPS réseau. Mettre à jour, activer HTTPS/SSH, désactiver Telnet/HTTP et isoler sur réseau infra.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"eComStation 2.2","comment":"OS/2 dérivé. Isoler, limiter services réseau et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Efficient Networks .*|^Eicon Shiva VPN gateway$|^Elsag Datamat SAS-200 ADSL modem$|^GlobespanVirata .*","comment":"Modems/routeurs très anciens. Remplacer ; en attendant, désactiver UPnP/Telnet/HTTP et couper admin WAN.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Elastix PBX (Linux 2.6.18)","comment":"PBX Elastix ancien. Mettre à niveau/migrer (projet arrêté), forcer TLS/SRTP et isoler VLAN VoIP.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Elfiq LB-550B load balancer (EOS 3.5.2)","comment":"Équilibreur en fin de support. Remplacer ; restreindre management et durcir TLS en attendant.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Elk ELK-M1EXP Ethernet-to-serial bridge","comment":"Passerelle alarme série-IP. Mettre à jour, isoler réseau sécurité et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"elmeg T240 or T444 PABX (Linux 2.0.38)","comment":"PBX très ancien. Décommissionner ou isoler strictement, désactiver services non chiffrés.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Embedded Linux 2.4.22 (Linksys NSLU2 NAS device or Synology DS106j NAS server)","comment":"Appliances Linux 2.4 obsolètes. Isoler, couper services en clair et planifier migration.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Ember InSight Adapter for programming EM2XX-family embedded devices","comment":"Outil de programmation. Isoler sur réseau d’ingénierie, autoriser accès temporaire et mettre à jour drivers/firmware.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^EMC Celerra.*|^EMC Celerra NS.*|^EMC Celerra or Clarion NAS device$","comment":"EMC Celerra/Clariion anciens. Désactiver SMB1/Telnet/FTP, activer SMB3/HTTPS/SSH, isoler réseau stockage et planifier modernisation.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^EMC VNX .*|^EMC VNX OE for File .*","comment":"EMC VNX. Mettre à jour OE, activer SMB3/HTTPS/SSH/SNMPv3, segmenter management et vérifier correctifs de sécurité récents.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Emerson Liebert cooling system iCOM controller","comment":"Contrôleur CVC. Mettre à jour, activer HTTPS/SSH, isoler VLAN OT et limiter l’admin par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Endian .*|^IPCop .*","comment":"Pare-feux communautaires anciens. Mettre à niveau vers plateformes maintenues et durcir services (TLS/SSH).","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Enerdis Enerium 200 energy monitoring device, Mitsubishi XD1000 projector, or Lantronix UDS200 external serial device server","comment":"Équipements OT/IoT hétérogènes. Mettre à jour, isoler (VLAN OT/AV), désactiver services en clair et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"EnGenius ESR-9250 WAP","comment":"WAP SMB. Mettre à jour, désactiver WPS/UPnP/gestion WAN, forcer WPA2/3 et limiter admin par ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Enistic Zone Controller WAP","comment":"Contrôleur Wi-Fi. Mettre à jour, activer HTTPS/SSH, désactiver Telnet/HTTP et isoler management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Enterasys .*","comment":"Équipements Enterasys anciens. Mettre à jour si possible, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP/SNMPv1/v2c et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Ericsson (BusinessPhone|SmartEdge).*|^ESI ESI-100 VoIP adapter$","comment":"PBX/routeurs/VoIP. Mettre à jour, forcer TLS/SRTP, isoler VLAN VoIP et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Espressif ESP32 WiFi system-on-a-chip","comment":"SoC Wi-Fi très répandu. Activer mises à jour OTA signées, forcer TLS, désactiver ports debug et isoler VLAN IoT.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Essentia OpenWifless ESS","comment":"Plateforme Wi-Fi. Mettre à jour, activer chiffrement fort et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"EtherWerX PT-1000 PPPoE terminator","comment":"Terminator PPPoE ancien. Isoler, limiter l’admin et planifier modernisation.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Eve Cam (lwIP 2.1.0 - 2.2.0)","comment":"Caméra domestique. Mettre à jour, activer 2FA/cloud sûr, isoler VLAN IoT et bloquer accès entrant.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Exabyte 221L LTO-3 tape library","comment":"Librairie bande ancienne. Mettre à jour firmware, isoler management et activer HTTPS/SSH uniquement.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Excito (B3|Bubba Two) file server.*","comment":"Petits NAS Excito anciens. Désactiver SMB1/FTP, activer SMB3/HTTPS et isoler VLAN stockage.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Express Logic ThreadX G3.0 (broadband router)","comment":"Routeurs ThreadX anciens. Mettre à jour firmware, désactiver services en clair et restreindre l’admin.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Exterity IPTV MPEG2 video encoder","comment":"Encodeur IPTV. Mettre à jour, isoler VLAN AV et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^F5 BIG-IP load balancer \\(BSD/OS 4\\.5\\)|^F5 BIG-IP load balancer \\(TMOS 11\\.4\\)$","comment":"Versions BIG-IP anciennes. Mettre à niveau vers TMOS maintenu (LTS), durcir ciphers/TLS, restreindre management et appliquer hotfixes.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^F5 (BIG-IP|3600 LTM|BIG-IP 3650|BIG-IP 6400|BIG-IP AFM|BIG-IP Application Security Manager|BIG-IP Edge Gateway|BIG-IP firewall|BIG-IP Local Traffic Manager).*","comment":"F5 BIG-IP. Mettre à jour TMOS (train supporté), désactiver SSL/TLS faibles, restreindre l’admin (self IP/ACL/VPN), sauvegarder config et surveiller iRules.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Fatek FBs-CBEH PLC Ethernet communication board","comment":"Carte Ethernet PLC. Mettre à jour, isoler réseau OT et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"FireBrick FB2700 firewall","comment":"Pare-feu FireBrick. Mettre à jour, durcir TLS/SSH et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^FORE Systems ForeThought ATM switch$","comment":"Switch ATM ancien. Décommissionner et retirer de la production.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Fortinet FortiOS 5.0.6","comment":"FortiOS 5.0.6 obsolète. Mettre à niveau immédiatement vers version supportée (6.4/7.x) et appliquer hardening (TLS/SSH).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Fortinet Forti(OS|Gate|Analyzer|Switch).*|^Fortinet FortiOS 6\\.2 - 7\\.2$|^Fortinet FortiOS 7$|^Fortinet FortiGate .*","comment":"Écosystème Fortinet. Maintenir au dernier patch (MR), restreindre management (trusted hosts/ACL/VPN), durcir ciphers et vérifier signatures IPS.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Foscam FI8908W surveillance camera (Linux 2.4.20)","comment":"Caméra Linux très ancienne. Remplacer ; sinon isoler VLAN caméras et bloquer exposition WAN.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Foundry .*","comment":"Équipements Foundry/Brocade anciens. Mettre à jour OS, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Freecom Network Drive NAS device","comment":"NAS grand public ancien. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS et isoler VLAN stockage.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Freecom SSLBBH NAS device","comment":"NAS ancien. Désactiver services en clair, activer SMB3/HTTPS et isoler.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Free Freebox V5 ADSL modem","comment":"Freebox V5 ancienne. Remplacer par box récente ; désactiver UPnP/administration à distance.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^FreeNAS 0\\..*|^FreeNAS 0\\.7.*","comment":"FreeNAS 0.x/0.7 obsolète. Migrer vers TrueNAS CORE/Scale supporté, désactiver SMB1 et durcir accès.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^FreeNAS 9\\.10.*","comment":"FreeNAS 9.10 ancien. Mettre à niveau vers TrueNAS CORE récent et activer SMB3/HTTPS/SSH.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^FreeBSD .* (2\\.|3\\.|4\\.|5\\.).*|^FreeBSD 2\\.|^FreeBSD 3\\.|^FreeBSD 4\\.|^FreeBSD 5\\.","comment":"FreeBSD 2.x–5.x. Isoler et migrer ; versions obsolètes avec piles réseau anciennes.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^FreeBSD .* (6\\.|7\\.|8\\.|9\\.).*|^FreeBSD 6\\.|^FreeBSD 7\\.|^FreeBSD 8\\.|^FreeBSD 9\\.","comment":"FreeBSD 6.x–9.x. Mettre à niveau vers version supportée (>=12/13) ; durcir SSH/TLS en attendant.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^FreeBSD (10\\.|11\\.|12\\.|13\\.).*","comment":"FreeBSD 10–13. Maintenir à jour (patch/RELEASE), activer SSH fort, désactiver services non requis et suivre errata.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"FREESCO single-floppy router (Linux 2.0.39)","comment":"Routeur sur disquette (Linux 2.0). Décommissionner immédiatement.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Fronius Datalogger Web","comment":"Datalogger photovoltaïque. Mettre à jour, isoler VLAN OT/IoT, activer HTTPS et bloquer accès WAN direct.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Frontier Silicon internet radio","comment":"Radio Internet. Mettre à jour, isoler VLAN IoT et bloquer exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"FS S5850 switch (FSOS 7.2.5)","comment":"Switch FS. Mettre à jour, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre l’admin par ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Fujian Ruijie Star-S2800 switch","comment":"Switch Ruijie. Mettre à jour, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Fuji DryPix medical imager (Microsoft Windows XP Embedded)","comment":"Imagerie médicale sur XP Embedded. Isoler réseau biomédical, interdire Internet et planifier migration.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Fujitsu (Eternus|Externus|PRIMERGY|ReliantUNIX|BS2000).*","comment":"Matériels/OS Fujitsu/Fujitsu Siemens. Mettre à jour microcodes/firmwares, isoler management et désactiver services non chiffrés ; planifier migration pour OS anciens.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Fuji Xerox .*","comment":"Imprimantes Fuji Xerox. Mettre à jour, activer IPPS/HTTPS/SNMPv3, désactiver RAW/LPD/Telnet et isoler VLAN impression.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Funkwerk .*|^bintec .*","comment":"Routeurs/WAP Funkwerk/bintec. Mettre à jour, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"GalaxyMetalGear 3507LR-SA NAS device","comment":"NAS ancien. Désactiver SMB1/FTP, activer SMB3/HTTPS et isoler VLAN stockage.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Gargoyle 1.5.10 router firmware (Linux 3.3)","comment":"Firmware routeur. Mettre à jour à version supportée, désactiver admin WAN/UPnP/WPS et forcer WPA2/3.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Garmin Virb Elite action camera","comment":"Caméra action. Mettre à jour, désactiver services non requis et isoler VLAN IoT.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Geist RSMINI environment sensor","comment":"Capteur environnement. Mettre à jour, isoler VLAN OT et bloquer accès WAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Geist Watchdog 1250 atmospheric monitor","comment":"Moniteur atmosphérique. Mettre à jour, activer HTTPS/SSH et isoler VLAN OT.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Gemtek P360 WAP or Siemens Gigaset SE515dsl wireless broadband router","comment":"WAP/routeur grand public anciens. Remplacer ; sinon désactiver WPS/UPnP et l’admin WAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"General Dynamics R8000B Comm Systems Analyzer","comment":"Analyseur communications. Isoler réseau labo, maintenir à jour et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Generex CS121 L BUDGET SNMP adapter","comment":"Adaptateur SNMP pour UPS. Activer SNMPv3, désactiver v1/v2c, isoler management et changer identifiants par défaut.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Gennet OxyGEN wireless ADSL router (Linux 2.6.11)","comment":"Routeur ADSL ancien. Remplacer ; sinon désactiver UPnP/WPS et l’admin WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Genua GeNUGate Firewall 7.0 (OpenBSD 4.6)","comment":"Pare-feu OpenBSD ancien. Mettre à niveau et durcir TLS/SSH, restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Geovision EBD4700 CCTV camera (Linux 3.4)","comment":"Caméra CCTV. Mettre à jour, activer HTTPS/802.1X et isoler VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"GNU Hurd 0.3","comment":"OS expérimental ancien. Isoler totalement et éviter toute exposition réseau.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Google Chromecast.*|^Google Home.*|^Google Nest Hub$|^Google Nexus Player$","comment":"Équipements Google Home/Chromecast. Mettre à jour, activer restrictions appli/appairage, isoler VLAN IoT et désactiver UPnP inutile.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Google Mini search appliance.*","comment":"Appliance Google Mini obsolète. Retirer de service et isoler jusqu’au remplacement.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"GoPro HERO3 camera","comment":"Caméra GoPro ancienne. Mettre à jour si possible, isoler VLAN IoT et désactiver services non requis.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"GoPro Wifi-Bacpac camera","comment":"Module Wi-Fi ancien. Isoler, désactiver accès WAN et changer identifiants par défaut.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Gosund EP2 smart plug (lwIP 1.4.1 - 2.0.3)","comment":"Prise connectée. Mettre à jour, isoler VLAN IoT, désactiver exposition WAN et surveiller trafic sortant.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Grandstream (BudgeTone|GXP|GXV|HandyTone).*","comment":"Téléphones/adaptateurs Grandstream. Mettre à jour firmware, forcer TLS/SRTP, désactiver provisioning non chiffré (TFTP/HTTP) et isoler VLAN VoIP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Grandstream BudgeTone 100 VoIP phone","comment":"Téléphone IP très ancien. Remplacer ; sinon isoler et forcer SRTP/TLS si disponible.","severity":"legacy","last_review":"2025-08-15"}
+
+
+{"match_type":"literal","match":"Green Hills Probe hardware debugger","comment":"Isoler sur réseau d’ingénierie, mettre à jour firmware, désactiver services non requis et restreindre l’administration par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Green Hills RTOS","comment":"Durcir configuration réseau (TLS/SSH uniquement), signer les mises à jour et isoler le segment OT/embarqué.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^H3C .*Comware 5\\.|^H3C .*Comware 3\\.","comment":"Équipements H3C Comware. Mettre à jour vers branche supportée, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"H3C E126A or S3100-8T-SI switch (Comware 3.10)","comment":"Switch Comware 3.x ancien. Mettre à niveau firmware, activer SSH/HTTPS et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Haiku R1 Alpha.*|^Haiku R1 Alpha 4 - R1 Beta 3$","comment":"OS non finalisé. Isoler hors production, limiter services réseau et éviter données sensibles.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Hawking PN7127P print server","comment":"Serveur d’impression ancien. Désactiver Telnet/RAW, activer IPPS/HTTPS, restreindre au VLAN impression.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Hawking PS12U, Repotech RP-1805B-V2, or TRENDnet TE100 P2U1P print server","comment":"Serveur d’impression. Désactiver services en clair, utiliser IPP/HTTPS et limiter accès au VLAN impression.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Head Digital Medialink Black Panther cable receiver","comment":"Décodeur TV. Isoler VLAN AV/IoT, bloquer exposition Internet et mettre à jour firmware.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Henry Argos biometric access control","comment":"Contrôle d’accès biométrique. Mettre à jour, isoler réseau sécurité, activer HTTPS/SSH et journaliser vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"HID EdgePlus Solo ES400 firewall","comment":"Contrôleur/pare-feu HID. Mettre à jour, restreindre management par VPN/ACL et durcir TLS/SSH.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HID Mercury LP1502 controller (Linux 3.16)","comment":"Contrôleur accès. Mettre à jour firmware, isoler VLAN sécurité et activer HTTPS/SSH uniquement.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"High-Flying HF-LPT100 embedded WLAN module","comment":"Module Wi-Fi embarqué. Mettre à jour, désactiver AP ouvert/UPnP, forcer TLS et isoler VLAN IoT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"HIKVISION DS-7600 Linux Embedded NVR (Linux 2.6.10)","comment":"NVR très ancien. Mettre à niveau/remplacer ; isoler VLAN caméras et désactiver accès WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Hikvision DVR","comment":"DVR vidéo. Mettre à jour, changer identifiants par défaut, activer HTTPS/802.1X et isoler VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Hioki MEMORY HiCORDER 8855 digital oscilloscope","comment":"Oscilloscope réseau. Isoler en labo, désactiver services inutiles et restreindre administration.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Hirschmann (L2E Rail|MACH|RS20|RS2-16M).*","comment":"Switch industriel Hirschmann. Mettre à jour, activer SSH/HTTPS/SNMPv3, isoler réseau OT et appliquer ACL de management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Hitachi BlueArc OS 7.0","comment":"Stockage NAS. Mettre à jour microcodes, activer SMB3/HTTPS/SSH et segmenter réseau stockage/management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Hitron BWG-35302 cable modem","comment":"Modem câble. Désactiver admin distante/UPnP, changer identifiants et exiger firmware opérateur à jour.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Hitron CVE-30360 router","comment":"Routeur opérateur. Mettre à jour, désactiver WPS/UPnP et l’administration WAN, forcer WPA2/3.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Honeywell T5+ or T6 Thermostat","comment":"Thermostat connecté. Mettre à jour, isoler VLAN IoT, activer 2FA/cloud sûr et bloquer accès entrant.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Hotway HDC-U2LA or Vantec NexStar LX NAS device","comment":"NAS grand public ancien. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS et isoler VLAN stockage.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^HP 170X print server.*|^HP 2101nw wireless print server$|^HP JetDirect .* print server|^HP JetDirect .*|^HP 9100c Digital Sender.*|^HP 4200 PSA .*","comment":"JetDirect/PSA/Digital Sender. Mettre à jour, désactiver Telnet/HTTP/RAW, activer IPPS/HTTPS/SNMPv3 et restreindre au VLAN impression.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^HP (Desk[Jj]et|ENVY|Photosmart|Officejet|Design[Jj]et|Laser[Jj]et|PSC|PhotoSmart|printer:).* printer","comment":"Imprimantes HP. Désactiver RAW/LPD/Telnet/FTP, activer IPPS/HTTPS/SNMPv3, limiter au VLAN impression et journaliser.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^HP ProCurve .*switch|^HP .* ProCurve switch|^HP 2424M ProCurve switch.*|^HP 4000M ProCurve switch.*|^HP 4108GL ProCurve switch$|^HP Brocade .* switch$|^HP GbE2c Ethernet Blade switch$|^HP ProLiant BL p-Class C-Gbe2 switch$","comment":"Commutateurs HP/ProCurve/Brocade. Mettre à jour OS, activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP/SNMPv1/v2c et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"HP 2530, 2920, or 5406zl switch","comment":"Switch ProCurve. Mettre à jour, activer SSH/HTTPS/SNMPv3 et appliquer ACL de management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HP 2920 or 3800 switch","comment":"Switch ProCurve. Appliquer mises à jour et durcissement (SSH/HTTPS/SNMPv3, ACL).","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HP E3500yl or ProCurve 5406zl switch","comment":"Switch HP. Mettre à jour et restreindre l’administration ; désactiver Telnet/HTTP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HPE Aruba 5412r switch","comment":"Switch Aruba. Mettre à jour (ArubaOS-Switch), activer SSH/HTTPS/SNMPv3 et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HP FlexFabric 5900CP switch (Comware 7.1)","comment":"Switch Comware 7. Mettre à jour, activer SSH/HTTPS, désactiver Telnet/HTTP et appliquer AAA/ACL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HP MSM410 WAP","comment":"Point d’accès. Mettre à jour, désactiver WPS/UPnP/gestion WAN et forcer WPA2/3-Enterprise.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HP MSM765zl WLAN controller","comment":"Contrôleur Wi-Fi. Mettre à jour, restreindre management (VPN/ACL) et activer certificats TLS à jour.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^HP iLO 2.*|^HP iLO or iLO 2.*|^HP Integrated Lights-Out 2$|^HP iLO 100i Standard.*","comment":"BMC HP iLO 2/100i anciens. Mettre à jour, désactiver ciphers faibles, isoler réseau d’admin ; planifier mise à niveau.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^HP iLO 3.*|^HP iLO 3 or iLO 4.*|^HP ProLiant DL320 iLO 2 remote management interface$|^HP ProLiant DL320s or ML310 iLO remote management interface$","comment":"BMC iLO 3/4. Mettre à jour, activer MFA si possible, restreindre management (ACL/VPN) et journaliser vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^HP iLO 4.*|^HP iLO 4 or iLO 5.*|^HP iLO 5.*","comment":"BMC iLO 4/5. Maintenir à jour, forcer TLS fort, restreindre management (trusted IP/VPN) et activer audit.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^HP Onboard Administrator .*","comment":"HP OA pour c-Class. Mettre à jour vers dernière révision supportée, désactiver HTTP/Telnet et restreindre accès au réseau d’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^HP (OpenVMS|Tru64 UNIX).*|^Compaq Tru64 UNIX.*","comment":"OpenVMS/Tru64 anciens. Isoler, activer SSH/TLS, désactiver Telnet/DECnet IV et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^HP-UX B\\.(09|10)\\..*","comment":"HP-UX 9/10 obsolète. Isoler strictement et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^HP-UX B\\.11\\.00($| )|^HP-UX B\\.11\\.11($| )","comment":"HP-UX 11.00/11.11 anciens. Isoler, durcir SSH/TLS et planifier mise à niveau (11.23/11.31).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^HP-UX B\\.11\\.(23|31).*","comment":"HP-UX 11.23/11.31. Maintenir patchs/PHCO, désactiver services hérités et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"HP MPE/iX 7.5","comment":"Système EoL. Isoler totalement et planifier décommissionnement.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^HP NonStop OS.*","comment":"HP NonStop. Maintenir H-series/J-series à jour, restreindre management et activer journalisation vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^HP (MSA|P2000|MSL|StorageWorks|MSA2000|P2000 G3).*","comment":"Stockage/bibliothèques bandes HP. Mettre à jour microcodes, activer HTTPS/SSH/SNMPv3 et segmenter management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"HP E1200 Network Storage Router NAS device or SonicWALL SOHO3 firewall","comment":"Équipement ancien. Mettre à jour au dernier firmware, isoler management ; remplacer si non supporté.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Huawei (AP|AR|CloudEngine|Echolife|EchoLife|HG8|MA|MT|Quidway|S|Secospace|SmartAX|VRP).*|^H3C .*","comment":"Équipements Huawei/H3C. Mettre à jour (VRP/Comware), activer SSH/HTTPS/SNMPv3, désactiver Telnet/HTTP et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Huawei VRP (3|5)\\..*","comment":"Huawei VRP 3/5 anciens. Planifier mise à niveau (VRP 8+), durcir et restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"HW group HWg-STE Ethernet thermometer","comment":"Sonde Ethernet. Mettre à jour, activer HTTPS si dispo et isoler VLAN OT.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"HW group Poseidon 3265 Ethernet thermometer","comment":"Sonde industrielle. Isoler réseau OT, activer HTTPS/SSH et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Hybertone GoIP GSM VoIP gateway","comment":"Passerelle GSM VoIP. Mettre à jour, forcer TLS/SRTP, désactiver provisioning non chiffré et isoler VLAN VoIP.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^IBM AIX 4\\..*","comment":"AIX 4.x obsolète. Isoler strictement et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^IBM AIX 5\\..*","comment":"AIX 5.x ancien. Durcir SSH/TLS, isoler et planifier mise à niveau (6/7).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^IBM AIX (6|7)(\\.|$)","comment":"AIX 6/7. Maintenir TL/SP à jour, désactiver services en clair et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^IBM i5/OS .*|^IBM OS/400 .*|^IBM i (6|7(\\.\\d+)?|7\\.80)$","comment":"IBM i (OS/400). Maintenir cumulatifs PTF, activer TLS/SSH, restreindre *SECOFR et segmenter management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^IBM 4690 OS.*|^IBM OS/2 Warp.*|^IBM OS/390.*","comment":"OS IBM historiques. Isoler totalement et planifier migration.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^IBM z/OS.*|^IBM z/VM.*","comment":"Mainframe IBM. Appliquer RSU/PUT à jour, restreindre TN3270 non chiffré, forcer AT-TLS et segmenter réseaux OSA/management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^IBM WebSphere DataPower (XI50|XS40).*","comment":"Appliance DataPower ancienne. Mettre à jour firmware, durcir ciphers/TLS et restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^IBM (System Storage|XIV|TS3|DS4|Isilon IQ 200).*|^Isilon IQ 200 NAS device$|^IBM System Storage TS3500 tape library$|^IBM System Storage DS4700 NAS device$","comment":"Stockage IBM/Isilon. Mettre à jour microcodes, désactiver SMB1/Telnet et segmenter management (HTTPS/SSH/SNMPv3).","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Icy Box NAS device","comment":"NAS grand public. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS et isoler.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"iDirect Protocol Processor (Red Hat Enterprise Linux 3)","comment":"Appliance RHEL 3 obsolète. Isoler strictement et planifier mise à niveau.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"IEI SEG-M or Walker Technologies Bridge-2006 Ethernet-to-serial bridge","comment":"Passerelle série-IP. Mettre à jour, désactiver Telnet/HTTP et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"IGEL UD3 thin client (Linux 2.6)","comment":"Client léger ancien. Mettre à jour OS/firmware, activer TLS et limiter usages sensibles.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"IHome SmartPlug iSP5WWC","comment":"Prise connectée. Mettre à jour, isoler VLAN IoT, désactiver exposition WAN et surveiller trafic sortant.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"IKEA Tradfri Zigbee gateway","comment":"Passerelle Zigbee. Mettre à jour, activer lier via app sécurisée, isoler VLAN IoT et bloquer accès entrant.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Imperva MX","comment":"Appliance sécurité. Mettre à jour, durcir TLS/SSH, restreindre management (out-of-band) et journaliser vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Infoblox Trinzic network control appliance","comment":"DNS/DHCP/IPAM. Mettre à jour NIOS, restreindre management, activer DNSSEC/TSIG et journaux vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Infomir MAG-250 set-top box","comment":"Set-top box ancien. Isoler VLAN AV et éviter exposition Internet.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Infrant ReadyNAS NV(\\+)? NAS device.*","comment":"Infrant ReadyNAS anciens. Désactiver SMB1/AFP anciens, activer SMB3/HTTPS et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Inova OnTime Clock Version 1.2.P","comment":"Horloge réseau. Mettre à jour, activer HTTPS et isoler VLAN OT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Intelbras VIP 3220 camera","comment":"Caméra IP. Mettre à jour, activer HTTPS/802.1X et isoler VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Intel Express (460T|510T|520T|550T).*","comment":"Switch Intel ancien. Mettre à jour si possible, activer SSH/HTTPS et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Intermec .*printer|^Intermec CK31 PDA.*","comment":"Périphériques Intermec anciens. Mettre à jour, activer HTTPS/SSH et isoler.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Intermec PM4i label printer","comment":"Imprimante d’étiquettes. Désactiver services en clair, activer HTTPS et restreindre au VLAN impression.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Interpeak IPCOM","comment":"Pile IP embarquée. Mettre à jour et durcir protocoles ; isoler segment IoT/OT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Intertex IX66-EDFLC ADSL modem","comment":"Modem ADSL ancien. Remplacer ; sinon désactiver UPnP/WPS/gestion WAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"IO-Data WN-G300R WAP (Linux 2.6)","comment":"WAP ancien. Mettre à jour, forcer WPA2/3, désactiver WPS/UPnP et l’admin WAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"IOGear GPSU01 USB print server","comment":"Serveur d’impression USB. Désactiver Telnet/HTTP, activer IPP/HTTPS et isoler VLAN impression.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Iomega StorCenter ix(2|4)-200.*","comment":"Iomega NAS anciens. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"ION Networks SA5600-series firewall","comment":"Pare-feu ancien. Mettre à jour si possible et planifier remplacement ; restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"IPAD-OS","comment":"Système non identifié/ancien. Isoler, limiter services exposés et surveiller.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^IPCop .*|^IPFire .*","comment":"Pare-feux IPCop/IPFire. Mettre à niveau vers versions supportées, durcir TLS/SSH et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"ipTIME PRO 54G WAP","comment":"WAP ancien. Mettre à jour, forcer WPA2/3, désactiver WPS/UPnP et l’admin WAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"IRIX64 IRIS 6.5","comment":"IRIX EoL. Isoler totalement et retirer de la production.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"iRobot Roomba 980 vacuum cleaner","comment":"Aspirateur connecté. Mettre à jour, isoler VLAN IoT et bloquer accès entrant.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^IronPort (AsyncOS|C[0-9]+).*","comment":"Cisco IronPort/Email Security. Mettre à jour AsyncOS, durcir TLS, activer MTA sécurisés et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"ISS Proventia GX3002C firewall (Linux 2.4.18)","comment":"Appliance IDS/IPS très ancienne. Remplacer ; isoler et couper services en clair.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"ISS Proventia GX3002 firewall (Linux 2.4.18)","comment":"Appliance IDS/IPS ancienne. Décommissionner ou isoler fortement.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"ITW WeatherGoose II environmental monitor","comment":"Sonde environnement. Mettre à jour, activer HTTPS/SSH et isoler VLAN OT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"JOOAN W-NVR video recorder","comment":"NVR vidéo. Mettre à jour, changer identifiants par défaut, activer HTTPS et isoler VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Joyent SmartOS","comment":"SmartOS/Illumos. Mettre à jour, durcir SSH/TLS, désactiver services inutiles et segmenter management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"JTEKT Toyopuc PC10 programmable logic controller","comment":"PLC industriel. Isoler réseau OT, interdire accès Internet et limiter l’admin par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Juniper (EX|J|M|MX|SRX|SA|MAG|SSG|WXC).*|^Juniper Networks JUNOS .*|^Juniper Networks Olive.*","comment":"Équipements Juniper. Mettre à jour JUNOS au train supporté, restreindre management (SSH/HTTPS/AAA), désactiver Telnet/HTTP et suivre JTAC bulletins.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Juniper Networks JUNOS (7\\.|8\\.|9\\.).*","comment":"JUNOS 7/8/9 obsolète. Isoler et migrer vers versions supportées.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Juniper Networks JUNOS (10\\.|11\\.|12\\.|13\\.|14\\.).*","comment":"JUNOS 10–14 anciens. Mettre à jour vers LTS actuel et durcir TLS/SSH.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Juniper Networks JUNOS (19\\.4|20\\.4)$","comment":"JUNOS récents. Maintenir correctifs, restreindre management et activer logs vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"KA9Q NOS TCP/IP stack for packet radio","comment":"Pile TCP/IP historique. Isoler totalement et éviter toute exposition Internet.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Kaba-Benzing time and attendance terminal","comment":"Pointage. Mettre à jour, isoler VLAN RH/OT et activer HTTPS.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Kaiomy AL-2014PW, Planet ADE-4110, or Siemens C-110 ADSL modem; HP LaserJet 2420 printer; or IBM DF-4000 ProFibre Storage Array","comment":"Équipements hétérogènes anciens. Remplacer ou isoler ; désactiver services en clair et durcir accès.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Kapsch electronic toll collection system","comment":"Système de péage. Isoler réseau critique, mettre à jour et appliquer contrôles d’accès forts.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Kartina SIG 220 set-top box","comment":"Décodeur IP. Isoler VLAN AV et éviter exposition Internet.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"KCorp KLG-575 WAP","comment":"WAP ancien. Mettre à jour, forcer WPA2/3 et désactiver WPS/UPnP.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Kemp LoadMaster .*","comment":"Load balancer Kemp. Mettre à jour firmware (LTS), durcir ciphers/TLS, restreindre management et sauvegarder configuration.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Keyence (CV-|SR-|code reader).*|^Keyence CV-X150F .*","comment":"Capteurs/contrôleurs vision. Mettre à jour, isoler réseau OT et restreindre l’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Kodak ESP .* printer|^Kodak ESP .*|^Kodak HERO .* printer|^Konica Minolta .* printer|^Kyocera .* printer|^Lanier .* printer|^Lexmark .* printer|^LG N4B2ND4 NAS device.*|^Lantronix .*print server$","comment":"Périphériques impression/NAS. Désactiver services en clair, activer IPPS/HTTPS/SNMPv3 et isoler VLAN impression/stockage.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Kongsberg Seatex BS410 AIS base station (maritime communication component)","comment":"Composant maritime. Isoler réseau OT, restreindre management et mettre à jour firmware.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Koukaam NETIO-230A power control device or ZyXEL SP-220E thermal printer","comment":"Prise/thermique réseau. Mettre à jour, activer HTTPS/SSH et isoler VLAN OT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Kronos (InTouch|Timeclock).*","comment":"Badgeuses Kronos. Mettre à jour, activer HTTPS/SSH, isoler VLAN RH et journaliser événements.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"KW-Software ProConOS","comment":"RTOS/PLC. Isoler réseau OT, signer mises à jour et restreindre canaux d’admin.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^LaCie .* NAS device.*|^LaCie Ethernet Disk .*","comment":"NAS LaCie anciens. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS et planifier remplacement.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"LaCrosse WA-1030U weather forecaster","comment":"Station météo connectée. Isoler VLAN IoT et bloquer exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Lancom .*|^Lancom LCOS .*|^Lancom WAP$","comment":"Équipements Lancom. Mettre à jour LCOS, activer SSH/HTTPS, forcer WPA2/3-EAP et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Lantronix (ETS|LRS|MPS1|MSS|MSSLite|SLC|UDS|XPort|XPress).*|^Lantronix Evolution OS.*","comment":"Passerelles série/IP Lantronix. Mettre à jour, activer SSH/HTTPS, désactiver Telnet/HTTP et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Larus 54580 NTP server","comment":"Serveur NTP. Restreindre clients via ACL, activer NTP authentifié si possible et isoler management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"LaSAT satellite receiver","comment":"Récepteur satellite. Isoler VLAN AV/OT et bloquer exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Leica T camera","comment":"Appareil connecté. Mettre à jour et éviter exposition réseau ; isoler VLAN IoT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Lenel LNL-(2200|2220|3300) access control board$","comment":"Contrôleurs Lenel. Mettre à jour, isoler réseau sécurité et activer HTTPS/SSH uniquement.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Leolink LEO-6400DL ADSL router","comment":"Routeur ADSL ancien. Remplacer ; sinon désactiver WPS/UPnP et l’admin WAN.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"LevelOne FPS-1032 print server","comment":"Serveur d’impression. Activer IPPS/HTTPS, désactiver Telnet/HTTP et limiter au VLAN impression.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Lexmark .* printer|^Lexmark (C|CS|E|MS|MX|Optra|T|X|Z).*","comment":"Imprimantes Lexmark. Désactiver RAW/LPD/Telnet/FTP, activer IPPS/HTTPS/SNMPv3 et isoler VLAN impression.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"LG IPECS 300 VoIP PBX (Linux 2.6)","comment":"PBX VoIP ancien. Mettre à jour, forcer TLS/SRTP et isoler VLAN VoIP.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"LG Smart TV LS570S (Linux 2.6)","comment":"Smart TV ancien. Isoler VLAN AV/IoT et bloquer exposition WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"LG webOS 7.2","comment":"Smart TV. Maintenir à jour et isoler VLAN AV/IoT ; désactiver services superflus.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"libreCMC 1.3 Elegant Eleanor (Linux 3.14)","comment":"Firmware routeur libre. Mettre à jour build, désactiver admin WAN/UPnP/WPS et forcer WPA2/3.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Liebert IntelliSlot Web Card","comment":"Carte Web UPS. Mettre à jour, activer HTTPS/SSH, désactiver Telnet/HTTP et isoler réseau infra.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Liebert Nfinity UPS","comment":"UPS réseau. Mettre à jour, activer HTTPS/SSH et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^LifeSize video conferencing system.*","comment":"Système visioconférence ancien. Mettre à jour, activer TLS/SRTP et isoler VLAN AV.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linksys (AM|BEF|BEFW|BEFSR|HPRO|NAS200|NSLU2|PAP2|RV|RVS|SPA|SRW|WAG|WAP|WET|WGA|WRT|WRV|WVC|WRK).*","comment":"Équipements Linksys/Sipura. Mettre à jour, désactiver WPS/UPnP/Telnet/HTTP/gestion WAN, forcer WPA2/3 et isoler management.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 1\\.\\d+(?:\\.\\d+)?(?: \\([^)]+\\))?$","comment":"Linux 1.x (pré-2.x) totalement obsolète. Isoler hors prod, bloquer Internet, migrer immédiatement.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 2\\.0\\.\\d+(?: - 2\\.0\\.\\d+)?(?: \\([^)]+\\))?$","comment":"Linux 2.0.x obsolète (noyau monolithique très ancien). Segmenter/air-gap, supprimer Telnet/FTP, plan de retrait.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.2\\.\\d+(?: - 2\\.2\\.\\d+)?(?: \\([^)]+\\))?$","comment":"Linux 2.2.x obsolète. Interdire toute exposition WAN, limiter au VLAN labo/OT, plan de migration.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 2\\.4\\.\\d+(?: - 2\\.4\\.\\d+)?(?: \\([^)]+\\))?$","comment":"Linux 2.4.x fin de vie. Activer filtrage réseau strict, couper services en clair (Telnet/FTP/HTTP), plan de remplacement rapide.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.4\\.\\d+(?:-| )?grsec(?: .*|)$","comment":"Linux 2.4.x avec grsecurity. Renforcé mais noyau EoL : même traitement (isolation forte, migration).","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.4\\.31 w/grsec(?: .*|)$","comment":"Linux 2.4.31 w/grsec : durci mais EoL. Segmenter, journaliser, décommissionner dès que possible.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 2\\.6\\.\\d+(?: \\((?!OpenWrt)[^)]+\\))?$","comment":"Linux 2.6.x. Noyau ancien/EoL. Monter au moins vers 4/5+, durcir SSH/TLS, limiter surface d’attaque.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.6\\.\\d+ - 2\\.6\\.\\d+(?: \\([^)]+\\))?$","comment":"Linux 2.6.x. Même recommandations : mise à niveau, désactivation services hérités, ACL de management.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.6\\.\\d+ - 3\\.\\d+(?:\\.\\d+)?(?: \\([^)]+\\))?$","comment":"Transitions 2.6→3.x présentes (toutes EoL). Migrer noyau (5/6 LTS), cloisonner et surveiller journaux kernel.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 2\\.6\\.20\\.6(?: \\([^)]+\\))?$","comment":"Linux 2.6.20.6 spécifique. Ancien correctif mineur : toujours EoL. Mise à niveau prioritaire.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 2.6.5-7.283-smp","comment":"Noyau packagé (SUSE) SMP ancien. Même si vendorisé : EoL → migrer et retirer services en clair.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 2.6.14.7","comment":"Linux 2.6.14.7 : build précis EoL. Segmenter et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 2.6.27.21-grsec","comment":"Linux 2.6.27.21 avec grsec. Renforcé mais EoL ; isoler et migrer.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 2\\.6\\.[0-9]+ \\((?:embedded|likely embedded)\\)$","comment":"Linux 2.6.x embarqué. Mettre à jour firmware/app, segmenter VLAN IoT/OT, bloquer exposition WAN, surveiller DNS/NTP sortants.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.6\\.[0-9]+ - 2\\.6\\.[0-9]+ \\((?:embedded|likely embedded)\\)$","comment":"Plage 2.6.x embarquée. Même posture IoT : micro-segmentation, listes d’accès et inventaire actif.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Linux 2.6.24 (Palm Pre mobile phone)","comment":"Palm Pre (2.6.24). Appareil mobile ancien : isoler sur VLAN invité, empêcher tout accès interne.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 2.6.15 (likely TP-LINK WAP)","comment":"WAP TP-LINK (2.6.15). Mettre à jour/ remplacer, désactiver WPS/UPnP, administration locale uniquement.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 2.6.17 (ZyXEL NWA570N WAP)","comment":"ZyXEL NWA570N (2.6.17). Forcer WPA2/3, couper management WAN, plan de remplacement.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 2.6.16 (fli4l 3.1.1)","comment":"Distribution routeur fli4l (2.6.16). Mise à niveau critique, limiter aux labos/testbeds.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 2\\.6\\.\\d+ - 3\\.2(?: \\([^)]+\\))?$","comment":"Plages finissant à 3.2 (EoL). Migrer vers 5/6 LTS ; restreindre SMBv1/SSLv3 si présents via userspace.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.6\\.31 - 3\\.0(?: \\([^)]+\\))?$","comment":"2.6.31→3.0 (transition). Vérifier pilotes/ABI, migrer, surveiller netfilter/conntrack.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 3\\.\\d+(?:\\.\\d+)?(?: \\([^)]+\\))?$","comment":"Linux 3.x ponctuel (y compris 3.0.0, 3.2.0/3.2.1, 3.6.10, 3.2.38). Série EoL : migration requise.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 3\\.\\d+ - 3\\.\\d+(?:\\.\\d+)?(?: \\([^)]+\\))?$","comment":"Linux 3.x. Maintenir au minimum en DMZ/VLAN dédiés, plan de mise à niveau.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 3\\.\\d+ - 4\\.\\d+(?:\\.\\d+)?$","comment":"Plages 3.x→4.x. 3.x EoL, 4.x vieillissant. Migrer vers 5/6 LTS ; durcir SSH/TLS, sysctl réseau.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Linux 3.18 (OpenWrt)","comment":"OpenWrt sur 3.18. Branches très anciennes : migrer vers OpenWrt 21/22+ (ou fork maintenu).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 3\\.13 or 4\\.2$","comment":"Chaîne mixte (3.13 ou 4.2). Traiter comme la plus faible (3.13 EoL) : isoler et migrer.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 2\\.6\\.32 or 3\\.10$","comment":"Chaîne mixte (2.6.32 ou 3.10). Les deux EoL : même mesures de réduction de risque et migration.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 4\\.\\d+(?:\\.\\d+)?$","comment":"Linux 4.x ponctuel. Encore vu en appliances ; maintenir patches distro, durcir crypto, surveiller vulnérabilités.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 4\\.\\d+ - 4\\.\\d+$","comment":"Linux 4.x. Conserver à jour, activer auditd/LSM, limiter management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 4\\.\\d+ - 5\\.\\d+(?:\\.\\d+)?$","comment":"Plages 4.x→5.x. Préparer migration vers 5 LTS/6 LTS, vérifier compatibilité pilotes/modules.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 4.15 - 5.19","comment":"4.15→5.19. Plusieurs releases non-LTS ; viser 5.15 LTS/6.1 LTS+, désactiver protocoles faibles (SMB1/TLS1.0).","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 4.19 - 5.15","comment":"4.19/5.15 (LTS courants). Rester à jour SRU/LTS, activer lockdown/IBT si dispo, restreindre RDP-like équivalents.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 5\\.\\d+(?:\\.\\d+)?$","comment":"Linux 5.x ponctuel. Tenir le rythme des correctifs (distro/vendor), réduire surface (firewalld/nftables).","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 5\\.\\d+ - 5\\.\\d+(?:\\.\\d+)?$","comment":"Linux 5.x. Vérifier support LTS, activer mitigations CPU (STIBP/IBRS/SSBD) si pertinentes.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 5\\.\\d+ - 6\\.\\d+(?:\\.\\d+)?$","comment":"Plages 5.x→6.x. Préparer migration vers 6.x LTS, vérifier changements BPF/iptables→nftables.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 5.0 - 5.14","comment":"5.0–5.14 (non-LTS). Éviter en production ; viser 5.15 LTS/6.1 LTS+.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 5.0 - 6.2","comment":"5.0–6.2 agrégé. S’assurer de versions supportées par l’éditeur ; verrouiller chiffrement (TLS1.2+).","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Linux 5.10","comment":"5.10 (LTS sur plusieurs distros). Garder au dernier niveau, activer LSM (AppArmor/SELinux) et auditing.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 5\\.10 - 5\\.(11|13|15|18|19)$","comment":"Chaînes 5.10→5.11/5.13/5.15/5.18/5.19. Viser 5.15 LTS+ ; contrôler modules noyau signés.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Linux 5.11","comment":"5.11 court terme. Passer vers 5.15 LTS/6.x LTS ; appliquer mesures dursysctl.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 5.13","comment":"5.13 non-LTS. Éviter en prod ; migrer LTS.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 5.14","comment":"5.14 non-LTS (souvent transition RHEL-like). Maintenir SRU et planifier LTS.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 5.15","comment":"5.15 LTS répandu. Garder à jour, activer lockdown mode, durcir cipherspace (CHACHA20/GCM).","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Linux 5.1 - 5.15","comment":"Plage 5.1–5.15. Élaguer kernels intermédiaires ; standardiser sur 5.15 LTS si supporté.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 5\\.(17|18|7|8|9|3)$","comment":"Versions 5.7/5.8/5.9/5.17/5.18/5.3 : non-LTS. Mettre à niveau.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 5\\.4(?: - 5\\.(8|10|15))?$","comment":"5.4 et plages (→5.8/5.10/5.15). 5.4 est LTS sur plusieurs distros : maintenir SRU, migrer à 5.15/6.x si possible.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Linux 6.0","comment":"6.0 court terme. Migrer vers 6.1/6.6 LTS si possible ; poursuivre durcissement (nftables, seccomp).","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux 3\\.2 - 3\\.10$","comment":"Plage 3.2–3.10 (toutes EoL). Isoler et migrer sans délai.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 3\\.10 - 4\\.(1|4|11)$","comment":"3.10→4.1/4.4/4.11. 3.10 EoL ; viser 5/6 LTS, vérifier compat ABI/netfilter.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Linux 3\\.11 - 4\\.(9)$","comment":"3.11→4.9. Migrer (5.15/6.x LTS), contrôler compat pilotes NIC/storage.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux(?! [1-6]\\.)(?:.*)$","comment":"Version Linux non mappée. Appliquer profil par défaut : exiger une LTS supportée, suivre CVE, désactiver services non requis.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Linux [1-6]\\.\\d+(?:\\.\\d+)?(?: - (?:[7-9]|[1-9]\\d)\\.\\d+(?:\\.\\d+)?)?(?: \\([^)]+\\))?$","comment":"Plage incluant une borne non mappée.","severity":"watch","last_review":"2025-08-15"}
+
+
+{"match_type":"literal","match":"LNL-3300 Intelligent System Controller","comment":"Contrôleur d’accès Lenel. Mettre à jour firmware, isoler réseau sécurité et n’autoriser que HTTPS/SSH depuis plages d’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"LogiLink Gigabit NAS device","comment":"NAS grand public. Désactiver SMB1/FTP/Telnet, activer SMB3/HTTPS et limiter au VLAN stockage.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Logitech Alert 750i camera (Linux 2.6.18)","comment":"Caméra IP ancienne. Mettre à jour si possible, isoler VLAN caméras et interdire exposition WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Logitech Squeezebox Touch media player (Linux 2.6.26)","comment":"Lecteur réseau ancien. Isoler VLAN AV/IoT, bloquer accès entrant et désactiver services inutiles.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Lorex (NV408|Security DVR)","comment":"DVR Lorex. Mettre à jour, changer identifiants par défaut, activer HTTPS et isoler VLAN caméras.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Lovebox (lwIP 2.1.0 - 2.2.0)","comment":"Objet connecté (lwIP). Mettre à jour, isoler VLAN IoT et bloquer exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Lucent PortMaster PM-25 terminal server (ComOS 3.9)","comment":"Terminal server ancien. Désactiver Telnet/HTTP, restreindre management par ACL/VPN et planifier remplacement.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Luminary Micro ARM Evaluation Kit","comment":"Carte d’évaluation. Ne pas exposer en production ; isoler en labo et désactiver services réseau.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Luxul XBR-2300 router","comment":"Routeur ancien. Mettre à jour, désactiver WPS/UPnP et administration WAN ; forcer WPA2/3.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^lwIP (1\\.0|1\\.1|1\\.2|1\\.3|1\\.4\\.0|1\\.4\\.0 or earlier)$","comment":"Pile lwIP < 1.4.1. Présenter dettes de sécurité. Isoler et migrer vers >= 2.x.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^lwIP (1\\.4\\.1|1\\.4\\.1 - 2\\.0\\.3)$","comment":"lwIP 1.4.1–2.0.3. Mettre à niveau (2.1+) et restreindre exposition.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^lwIP (2\\.1\\.0|2\\.1\\.0 - 2\\.2\\.0)$","comment":"lwIP 2.1.x–2.2.x. Maintenir patches, activer TLS côté application et isoler VLAN IoT/OT.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Lyngsoe Systems RFID reader","comment":"Lecteur RFID. Mettre à jour, isoler réseau OT et restreindre gestion par ACL/VPN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^m0n0wall .*|^m0nowall .*","comment":"Pare-feu m0n0wall EoL. Remplacer (pfSense/OPNsense), isoler et couper services en clair.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"m3 muvid IR 715-2 Internet radio receiver","comment":"Radio Internet. Isoler VLAN AV/IoT et bloquer accès entrant.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"M5Stack M5GO (lwIP 2.1.0 - 2.2.0)","comment":"Module IoT. Mettre à jour firmware, limiter accès sortant et segmenter VLAN IoT.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Macsense HomePad music server (Linux 2.4.18)","comment":"Appareil Linux 2.4 EoL. Isoler fortement et planifier décommissionnement.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Maipu MyPower MP3840 router","comment":"Routeur entreprise. Mettre à jour, désactiver services hérités et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"mbNET industrial router (Linux 2.6.26)","comment":"Routeur industriel ancien. Isoler réseau OT, mettre à niveau et interdire admin WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"McAfee Email Gateway 6.7.2","comment":"Appliance mail. Mettre à jour vers version supportée, durcir TLS et journaliser vers SIEM.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"McAfee Enterprise Firewall","comment":"Pare-feu. Appliquer mises à jour, restreindre management et vérifier EoL.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Meinberg LANTIME M600 NTP server (Linux 2.6.15)","comment":"Appliance NTP ancienne. Restreindre clients par ACL, isoler management et planifier mise à niveau.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Mellanox Onyx InfiniBand switch","comment":"Switch IB. Mettre à jour Onyx, restreindre management hors bande et activer AAA/TACACS+.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Meross (smart light bulb|smart plug|Smart Wi-Fi Hub)","comment":"Domotique Meross. Mettre à jour, isoler VLAN IoT et bloquer exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Meru MC1000 wireless LAN controller","comment":"Contrôleur Wi-Fi ancien. Mettre à jour, restreindre management (VPN/ACL) et forcer WPA2/3-Enterprise.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Metrix Scopix III oscilloscope","comment":"Équipement de labo. Isoler, désactiver services inutiles et contrôler accès d’admin.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"MGE EX 7 RT or Evolution 850 UPS","comment":"UPS réseau. Mettre à jour, activer HTTPS/SSH et restreindre management à un VLAN infra.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"MicroNet SP2267 wireless ADSL router","comment":"Routeur ADSL ancien. Désactiver WPS/UPnP/HTTP, forcer WPA2/3 ; remplacer si possible.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Micronet SP916NE WAP","comment":"Point d’accès ancien. Mettre à jour, forcer WPA2/3 et désactiver WPS.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Micropython 1.8","comment":"Runtime embarqué ancien. Mettre à niveau, signer le code et limiter surface réseau.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft Mediaroom set-top box","comment":"Décodeur IPTV. Isoler VLAN AV et éviter toute exposition Internet.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft MN-700 wireless broadband router","comment":"Routeur Wi-Fi ancien. Remplacer ; à défaut, couper WPS/UPnP et l’admin WAN.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft Network Client 3.0 for MS-DOS","comment":"Client réseau historique. Isoler totalement et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Microsoft Windows (3\\.|95|98|Millenni|Milleniu|Millenium|Millennium|Me)","comment":"Windows 3.x/95/98/Me. Systèmes obsolètes. Isoler totalement et décommissionner.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows NT (3\\.|4\\.|Version 4\\.0|Workstation 4\\.0)","comment":"Windows NT 3.x/4.0. Obsolète ; isoler et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows 2000( |$)|^Microsoft Windows 2000","comment":"Windows 2000 (toutes éditions). Obsolète ; isoler et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows XP( |$)|^Windows XP SP","comment":"Windows XP (y compris Embedded). Obsolète ; isoler strictement et décommissionner.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows (Server )?2003( |$)|^Microsoft Windows Server 2003","comment":"Windows Server 2003 (toutes éditions). Obsolète ; isoler et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows Vista","comment":"Windows Vista. EoL : isoler et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows 7( |$)|^Microsoft Windows 7","comment":"Windows 7 (SP0/SP1). EoL : isoler, restreindre Internet et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows 8(\\.| |$)|^Microsoft Windows 8\\.1","comment":"Windows 8/8.1. EoL : limiter exposition et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows 10 (1507|1511|1607|1703|1709|1803|1809|1903|1909|2004|20H2|21H1|21H2)","comment":"Windows 10 versions hors support. Mettre à jour au minimum vers 22H2 (ou migrer 11), durcir et réduire exposition.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft Windows 10","comment":"Windows 10 (générique). Maintenir à jour (22H2+), activer SecureBoot/BitLocker, WDAC et réduire surface.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows 10 .* - 11.*|^Microsoft Windows 10 1607 - 11 23H2","comment":"Windows 10→11 (mention groupée). Vérifier support, privilégier 11 23H2+ et durcir (Credential Guard, Smart App Control).","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft Windows 11","comment":"Windows 11. Maintenir au niveau Patch Tuesday, activer MFA/Hello, WDAC et ASR.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows 11 21H2","comment":"Windows 11 21H2 hors support. Mettre à jour vers 23H2/24H2.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Microsoft Windows Server 2008( R2)?","comment":"Windows Server 2008/2008 R2. EoL : isoler, réduire exposition, migrer (2019/2022).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Microsoft Windows Server 2012( R2)?","comment":"Windows Server 2012/2012 R2 (EoS). Activer ESU si présent, sinon migrer (2019/2022).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft Windows Server 2016","comment":"Server 2016. Maintenir CU/SSU, activer TLS1.2+, SMB signing et restreindre RDP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft Windows Server 2019","comment":"Server 2019. Maintenir à jour, activer LAPS, Defender ATP et durcir RDP/WinRM.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Microsoft Windows Server 2022","comment":"Server 2022. Appliquer mises à jour, EFI SecureBoot/TPM et politiques de chiffrement fortes.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Microsoft Windows (CE|Embedded|Windows Embedded Standard 7|Fundamentals for Legacy PCs)","comment":"Windows CE/Embedded/Thin clients. EoL ou surface réduite : isoler, limiter services et planifier migration.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Mikro[Tt]ik RouterOS (2\\.|3\\.|4\\.|5\\.)","comment":"RouterOS ≤5.x. Mettre à niveau (6 LTS/7), désactiver services non chiffrés et restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Mikro[Tt]ik RouterOS 6(\\.|$)","comment":"RouterOS 6.x. Maintenir au dernier 6 LTS, activer SSH/HTTPS et couper Winbox/HTTP publics.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Mikro[Tt]ik RouterOS 7(\\.| |$)","comment":"RouterOS 7.x. Suivre correctifs, durcir API/Winbox et limiter management par liste d’IP.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"MikroTik RB750G router","comment":"Routeur MikroTik ancien. Mettre à jour vers RouterOS LTS et restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^OpenBSD (2\\.|3\\.|4\\.|5\\.)","comment":"OpenBSD ≤5.x. EoL : isoler et migrer.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^OpenBSD 6\\.(0|1|2|3|4)","comment":"OpenBSD 6.0–6.4. Versions anciennes ; migrer vers 7.x.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^OpenBSD 6\\.(7|8|9)|^OpenBSD 7\\.(0|1)","comment":"OpenBSD 6.7–6.9/7.0–7.1. Maintenir patches et désactiver services inutiles.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^OpenWrt (White Russian 0\\.9|Kamikaze|Backfire|Attitude Adjustment|Barrier Breaker|Chaos Calmer|Designated Driver|0\\.9 - 10\\.03|0\\.9 - 7\\.09)","comment":"Anciennes versions OpenWrt. Passer à 21.02/22.03+ ; couper admin WAN/UPnP/WPS.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^OpenWrt (18|18\\.06|19\\.07)","comment":"OpenWrt 18/19. Ancien ; mettre à niveau (21/22+) et durcir.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^OpenWrt (21\\.02|22\\.03)","comment":"OpenWrt 21/22. Maintenir à jour, forcer WPA2/3 et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Oracle Solaris 10|^Sun Solaris 10","comment":"Solaris 10 (legacy). Restreindre, appliquer patch bundles ou migrer Solaris 11.4.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Oracle Solaris 11(\\.|$)|^Sun Solaris 11(\\.|$)","comment":"Solaris 11.x. Maintenir SRU, durcir SSH/SMF et isoler management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Sun Solaris (2\\.|7|8|9)|^Sun SunOS 4\\.|^SGI IRIX","comment":"Solaris <10, SunOS 4.x ou IRIX : obsolètes. Isoler totalement et décommissionner.","severity":"obsolete","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Sun OpenSolaris .*|^OpenIndiana","comment":"OpenSolaris/OpenIndiana anciens. Vérifier support, sécuriser SSH/IPS et limiter exposition.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^VMware ESX(i)? (3\\.|4\\.|5\\.|6\\.0)","comment":"VMware ESX/ESXi 3/4/5/6.0. Versions EoL : isoler et migrer (7/8).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"VMware ESXi 7.0.3","comment":"ESXi 7.0.3. Maintenir ESXi/firmware à jour, activer lockdown mode et restreindre ESXi Shell/SSH.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"VMware Player virtual NAT device","comment":"NAT virtuel. Vérifier règles et bloquer exposition involontaire depuis l’hôte.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^QNAP (QTS|NAS|TS-)","comment":"QNAP QTS/TS. Mettre à jour QTS (4.5+/5.x), désactiver services exposés et activer 2FA.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Synology DiskStation Manager (3\\.|4\\.|5\\.)|^Synology DS[0-9]+ .*Linux 2\\.6","comment":"Synology DSM ≤5.x/anciens noyaux. Mettre à niveau (DSM 7.x), couper SMB1/Telnet.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Synology DiskStation Manager 6(\\.| )|^Synology RT1900ac router|^Synology VS240HD","comment":"Synology DSM 6.x/anciens appareils. Maintenir patches, activer HTTPS/2FA et segmenter VLAN.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Synology DiskStation Manager 7(\\.| )","comment":"Synology DSM 7.x. Maintenir à jour, désactiver QuickConnect si non nécessaire et activer 2FA.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^NetBSD (1\\.|2\\.|3\\.|4\\.|5\\.)","comment":"NetBSD ≤5.x. Ancien/EoL : isoler et migrer.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^NetBSD 6\\.|^NetBSD 7\\.","comment":"NetBSD 6/7. Versions anciennes ; limiter exposition et planifier mise à niveau.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^NetBSD 9\\.","comment":"NetBSD 9.x. Maintenir patches et désactiver services inutiles.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Novell NetWare (3\\.|4\\.|5\\.|6\\.)|^Novell NetWare 6\\.5","comment":"Novell NetWare. EoL : isoler totalement et migrer (OES/Linux).","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"NSFOCUS WAF","comment":"WAF NSFOCUS. Mettre à jour, durcir TLS/SSH et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^SonicWALL (PRO|NSA|TZ|Aventail|SonicOS)","comment":"SonicWALL. Mettre à jour firmware, désactiver management WAN, activer MFA et journaux vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^WatchGuard Fire[Bb]ox|^WatchGuard XTM|^WatchGuard firewall","comment":"WatchGuard. Mettre à jour Fireware, restreindre management, activer MFA et IDS/IPS.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Ubiquiti (AirMax|AirOS|Edge|UniFi|Dream Machine|USW|NanoStation|Pico|webcam|WAP)","comment":"Ubiquiti. Mettre à jour (stable/LTS), couper gestion WAN/UPnP, forcer WPA2/3-Enterprise et 2FA pour UniFi.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^QNX RTOS( |$)|^QNX RTOS ","comment":"QNX RTOS 4/6/7. Segmenter réseau OT, signer mises à jour et limiter services exposés.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^VxWorks (5\\.|6\\.)","comment":"VxWorks 5/6. Ancien : isoler réseau OT, désactiver Telnet/FTP et planifier migration (7/12).","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^VxWorks (7|12)","comment":"VxWorks 7/12. Maintenir SDK/patches, TLS modernes et contrôle d’accès strict.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Philips Hue Bridge (lwIP)","comment":"Passerelle Zigbee. Mettre à jour, isoler VLAN IoT et activer 2FA sur compte cloud.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"regex","match":"^Philips Hue Bridge 2\\.0 .*","comment":"Hue Bridge 2.0. Maintenir firmware, bloquer accès entrant et surveiller requêtes sortantes.","severity":"watch","last_review":"2025-08-15"}
+{"match_type":"literal","match":"OSRAM Lightify ZigBee gateway","comment":"Passerelle Zigbee. Isoler VLAN IoT, mettre à jour et couper exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Shelly home automation device (lwIP 1.4.1 - 2.0.3)","comment":"Domotique Shelly. Mettre à jour, désactiver cloud si inutile et isoler VLAN IoT.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Western Digital My Cloud (Linux 3.2)","comment":"NAS WD My Cloud ancien. Mettre à jour, couper UPnP/FTP/Telnet et restreindre au VLAN stockage.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"Western Digital My Cloud DL4100 NAS (Linux 3.10)","comment":"NAS WD. Activer HTTPS/SMB3, 2FA et limiter exposition.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^QEMU user mode network gateway|^Oracle Virtualbox (lwIP NAT bridge|Slirp NAT bridge)","comment":"NAT utilisateur (VM). Vérifier filtrage/anti-spoofing et éviter exposition involontaire.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Raritan Dominion KX II KVM","comment":"KVM sur IP. Mettre à jour, activer HTTPS/TLS forts, 2FA et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Riverbed (RiOS|Steelhead)","comment":"Appliances Riverbed. Mettre à jour RiOS, désactiver services hérités et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Radware (LinkProof|OnDemand Switch|App|APsolute OS)","comment":"Radware. Mettre à jour, durcir ciphers/TLS et isoler management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^SCO (OpenServer|UNIX|UnixWare)","comment":"SCO OpenServer/UnixWare. Obsolète : isoler et décommissionner.","severity":"obsolete","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Supermicro IPMI|^Supermicro AOC-SIMSO\\+ IPMI card","comment":"BMC Supermicro. Mettre à jour, désactiver ciphers faibles, isoler réseau d’admin et activer alerting.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"Tripp Lite NetOS 7.5.2tl","comment":"PDU/UPS. Mettre à jour, activer HTTPS/SSH et limiter management à IP de confiance.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"TrueNAS 12.0 - 13.0 (FreeBSD 12.2-RELEASE - 13.1-RELEASE)","comment":"TrueNAS. Maintenir à jour, activer SMB3/HTTPS/2FA et segmenter management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Vyatta( |$)|^Vyatta .*","comment":"Vyatta (EoL). Migrer vers VyOS/routeur supporté ; restreindre services en attendant.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^ZKT[eE]co F18|^ZKTeco F18 fingerprint reader|^# ZKteco F18","comment":"Contrôleur biométrique. Mettre à jour, isoler réseau sécurité, activer HTTPS et journaliser vers SIEM.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^ZyXEL (AES|ES|G-|GS|Keenetic|NSA|NBG|o2 HomeBox|P-|Prestige|STB|ZyNOS|ZyWALL)","comment":"Équipements ZyXEL (divers). Mettre à jour, désactiver Telnet/HTTP/WPS/UPnP et restreindre administration.","severity":"legacy","last_review":"2025-08-15"}
+{"match_type":"literal","match":"ZyWALL Unified Security Gateway (ZLD 3.30)","comment":"ZyWALL USG ancien. Mettre à jour ZLD, activer MFA et restreindre management.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Netgear (CG|CM|DG|DM|EVA|FR|FS|GS|HE|Orbi|ProSafe|PS|R|RAIDiator|ReadyNAS|RT|SC|WG|WGN|WGR|WGT|WNDAP|WNR|WPN|XS|GS700T|GS700T-|GS700T)","comment":"Équipements Netgear. Mettre à jour, forcer TLS/WPA2/3, désactiver UPnP/WPS/admin WAN et segmenter management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Nintendo (Wii|3DS|DS)|^Sony PlayStation|^Xbox|^OUYA|^Roku","comment":"Consoles/lecteurs grand public. Isoler VLAN AV/IoT et bloquer exposition WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"literal","match":"YI home camera (Linux 4.9)","comment":"Caméra IP. Mettre à jour, activer HTTPS si disponible, isoler VLAN caméras et couper accès WAN.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^XigmaNAS \\(FreeBSD (11\\.|12\\.)","comment":"XigmaNAS. Maintenir à jour, activer SMB3/HTTPS et restreindre management.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Xerox (ApeosPort|Document Centre|Phaser|WorkCentre|printer|WorkCentre Pro)","comment":"Imprimantes/MPP Xerox. Désactiver RAW/LPD/Telnet/FTP, activer IPPS/HTTPS/SNMPv3 et limiter au VLAN impression.","severity":"watch","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Nokia (IP|firewall|N[0-9]|E[0-9]|S60|Symbian)","comment":"Appareils Nokia/Symbian/IPSO. Systèmes anciens : isoler, mettre à jour si possible et éviter données sensibles.","severity":"legacy","last_review":"2025-08-15"}
+
+{"match_type":"regex","match":"^Sagem|^Sagemcom|^Thomson SpeedTouch|^Orange Livebox","comment":"CPE FAI (Sagem/Thomson/Livebox). Couper WPS/UPnP/gestion WAN, forcer WPA2/3 et maintenir firmware opérateur.","severity":"watch","last_review":"2025-08-15"}

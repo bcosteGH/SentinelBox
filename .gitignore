@@ -1,0 +1,6 @@
+.env
+__pycache__
+runs
+*.sqlite
+.pytest_cache
+.git
