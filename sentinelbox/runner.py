@@ -26,12 +26,10 @@ class AuditRunner:
         logfile = audit_dir / "events.jsonl"
         level = str(context.get("log_level", "DEBUG")).upper()
         logger = build_logger(logfile, level)
-
         conn = open_db(self.db_path)
-        init_db(conn)
         if reset_db:
             purge_db(conn)
-            init_db(conn)
+        init_db(conn)
 
         def log(level_str: str, module: str | None, message: str, data: Any = None) -> None:
             add_event(conn, audit_id, level_str, module, message, json.dumps(data) if data is not None else None)

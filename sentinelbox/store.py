@@ -1,6 +1,6 @@
 from pathlib import Path
 from typing import Any, Optional
-from .db import upsert_host, list_hosts, kv_put, kv_get, upsert_os_inventory, list_os_inventory
+from .db import upsert_host, list_hosts, kv_put, kv_get, upsert_os_inventory, list_os_inventory, upsert_service_inventory, replace_host_vuln_summary, upsert_port_inventory, list_ports_inventory, list_service_inventory, insert_auth_finding, list_auth_findings
 
 class Store:
     def __init__(self, conn, audit_id: str, audit_dir: Path):
@@ -21,23 +21,28 @@ class Store:
         return list_hosts(self.conn, self.audit_id)
 
     def put_os_info(self, ip: str, label: Optional[str], confidence: Optional[int], obsolete: Optional[bool], obsolescence: Optional[dict[str, Any]]) -> None:
-        payload = None
-        if obsolescence is not None:
-            import json
-            payload = json.dumps(obsolescence, ensure_ascii=False, separators=(",", ":"))
-        upsert_os_inventory(self.conn, self.audit_id, ip, label, confidence, obsolete, payload)
+        upsert_os_inventory(self.conn, self.audit_id, ip, label, confidence, None, None, None, obsolete, obsolescence.get("last_review") if obsolescence else None, "rule" if obsolescence else None)
 
     def list_os_info(self) -> list[dict[str, Any]]:
-        items = list_os_inventory(self.conn, self.audit_id)
-        out = []
-        import json
-        for it in items:
-            ob = json.loads(it["obsolescence"]) if it["obsolescence"] else None
-            out.append({
-                "ip": it["ip"],
-                "label": it["label"],
-                "confidence": it["confidence"],
-                "obsolete": it["obsolete"],
-                "obsolescence": ob
-            })
-        return out
+        return list_os_inventory(self.conn, self.audit_id)
+
+    def put_service_info(self, ip: str, proto: str, port: int, state: str, service_name: Optional[str], name_confidence: Optional[int], product: Optional[str], version: Optional[str], version_confidence: Optional[int], extrainfo: Optional[str], tunnel: Optional[str]) -> None:
+        upsert_service_inventory(self.conn, self.audit_id, ip, proto, port, state, service_name, name_confidence, product, version, version_confidence, extrainfo, tunnel)
+
+    def list_services(self) -> list[dict[str, Any]]:
+        return list_service_inventory(self.conn, self.audit_id)
+
+    def replace_host_vuln_summary(self, ip: str, items_json: str) -> None:
+        replace_host_vuln_summary(self.conn, self.audit_id, ip, items_json)
+
+    def put_port(self, ip: str, proto: str, port: int, state: str) -> None:
+        upsert_port_inventory(self.conn, self.audit_id, ip, proto, port, state)
+
+    def list_ports(self) -> list[dict[str, Any]]:
+        return list_ports_inventory(self.conn, self.audit_id)
+
+    def put_auth_finding(self, ip: str, proto: str, port: int, service_name: str, username: Optional[str], password_masked: Optional[str], method: str, verified: bool, note: Optional[str]) -> None:
+        insert_auth_finding(self.conn, self.audit_id, ip, proto, port, service_name, username, password_masked, method, verified, note)
+
+    def list_auth_findings(self) -> list[dict[str, Any]]:
+        return list_auth_findings(self.conn, self.audit_id)

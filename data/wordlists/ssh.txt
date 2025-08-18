@@ -1,0 +1,7 @@
+# username:password
+admin:admin
+admin:1234
+admin:password
+root:root
+root:1234
+root:toor
