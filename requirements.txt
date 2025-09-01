@@ -1,3 +1,5 @@
 python-nmap
 paramiko
 pysnmplib
+selenium
+requests

@@ -27,7 +27,7 @@ class LoggingCfg:
     level: str
 
 @dataclass
-class OSDetect:
+class OSObsolescence:
     nmap_timing: str
     host_timeout_seconds: int
     batch_size: int
@@ -76,6 +76,32 @@ class AuthBruteforce:
     enable_snmp: bool
 
 @dataclass
+class CMSeekCfg:
+    script_path: str
+    timeout_seconds: int
+    clear_between_scans: bool
+    follow_redirect: bool
+    random_agent: bool
+
+@dataclass
+class TLSScanCfg:
+    script_path: str
+    timeout_seconds: int
+    prefer_hostname: bool
+    enabled_services: list[str]
+    connect_timeout: int
+    openssl_timeout: int
+
+
+@dataclass
+class MailAuditCfg:
+    domains: list[str]
+    dkim_selector_patterns_path: Path
+    dns_timeout_seconds: float
+    max_spf_lookups: int
+    problem_catalog_path: Optional[Path]
+
+@dataclass
 class Config:
     interface: str
     workdir: Path
@@ -86,10 +112,13 @@ class Config:
     report: Report
     discovery: Discovery
     logging: LoggingCfg
-    os_detect: OSDetect
+    os_obsolescence: OSObsolescence
     port_scan: PortScan
     service_fingerprint: ServiceFingerprint
     auth_bruteforce: AuthBruteforce
+    cmseek: CMSeekCfg
+    tls_scan: TLSScanCfg
+    mail_audit: MailAuditCfg
 
 def _get(d: dict[str, Any], key: str, default: Any) -> Any:
     return d[key] if key in d else default
@@ -100,9 +129,67 @@ def _load_toml(path: Path) -> dict[str, Any]:
     with path.open("rb") as f:
         return tomllib.load(f)
 
-def load_config(path: Optional[Path] = None) -> 'Config':
+def _as_str_list(val: Any, default: list[str]) -> list[str]:
+    if isinstance(val, list):
+        out = []
+        for x in val:
+            if x is None:
+                continue
+            if isinstance(x, (int, float)):
+                out.append(str(x))
+            else:
+                out.append(str(x).strip())
+        return [x for x in out if x]
+    if isinstance(val, str):
+        parts = [x.strip() for x in val.split(",")]
+        return [x for x in parts if x]
+    return list(default)
+
+def _as_int_map(val: Any, default: dict[str, int]) -> dict[str, int]:
+    if isinstance(val, dict):
+        out: dict[str, int] = {}
+        for k, v in val.items():
+            try:
+                out[str(k)] = int(v)
+            except Exception:
+                continue
+        return out if out else dict(default)
+    if isinstance(val, list):
+        out: dict[str, int] = {}
+        for item in val:
+            if isinstance(item, dict):
+                for k, v in item.items():
+                    try:
+                        out[str(k)] = int(v)
+                    except Exception:
+                        continue
+            elif isinstance(item, str):
+                s = item.strip()
+                if "=" in s:
+                    k, v = s.split("=", 1)
+                    try:
+                        out[k.strip()] = int(v.strip())
+                    except Exception:
+                        continue
+        return out if out else dict(default)
+    if isinstance(val, str):
+        out: dict[str, int] = {}
+        for chunk in val.split(","):
+            s = chunk.strip()
+            if not s or "=" not in s:
+                continue
+            k, v = s.split("=", 1)
+            try:
+                out[k.strip()] = int(v.strip())
+            except Exception:
+                continue
+        return out if out else dict(default)
+    return dict(default)
+
+def load_config(path: Optional[Path] = None) -> "Config":
     cfg_path = Path(os.getenv("SB_CONFIG", "sentinelbox.toml")) if path is None else path
     data = _load_toml(cfg_path)
+
     core = data.get("core", {})
     report = data.get("report", {})
     disc = data.get("discovery", {})
@@ -111,6 +198,9 @@ def load_config(path: Optional[Path] = None) -> 'Config':
     pscan = data.get("port_scan", {})
     svc = data.get("service_fingerprint", {})
     abf = data.get("auth_bruteforce", {})
+    cm = data.get("cmseek", {})
+    tls = data.get("tls_scan", {})
+    mailsec = data.get("mail_audit", {})
 
     interface = str(_get(core, "interface", "eth0"))
     workdir = Path(_get(core, "workdir", "./runs"))
@@ -135,7 +225,8 @@ def load_config(path: Optional[Path] = None) -> 'Config':
         enable_avahi=bool(_get(disc, "enable_avahi", True)),
     )
     logcfg = LoggingCfg(level=str(_get(logsec, "level", "DEBUG")).upper())
-    osdet = OSDetect(
+
+    osdet = OSObsolescence(
         nmap_timing=str(_get(osobs, "nmap_timing", "T3")),
         host_timeout_seconds=int(_get(osobs, "host_timeout_seconds", 45)),
         batch_size=int(_get(osobs, "batch_size", 16)),
@@ -148,6 +239,7 @@ def load_config(path: Optional[Path] = None) -> 'Config':
         enable_rules_fallback=bool(_get(osobs, "enable_rules_fallback", True)),
         strict_unambiguous_only=bool(_get(osobs, "strict_unambiguous_only", True)),
     )
+
     psc = PortScan(
         nmap_timing=str(_get(pscan, "nmap_timing", "T4")),
         tcp_top_ports=int(_get(pscan, "tcp_top_ports", 1000)),
@@ -160,6 +252,7 @@ def load_config(path: Optional[Path] = None) -> 'Config':
         use_pn=bool(_get(pscan, "use_pn", True)),
         udp_ports=list(_get(pscan, "udp_ports", [53,67,69,123,137,138,161,162,500,514,520,631,1434,1701,1900,4500,5353])),
     )
+
     service_fp = ServiceFingerprint(
         nmap_timing=str(_get(svc, "nmap_timing", "T4")),
         host_timeout_seconds=int(_get(svc, "host_timeout_seconds", 180)),
@@ -171,6 +264,7 @@ def load_config(path: Optional[Path] = None) -> 'Config':
         vulners_mincvss=float(_get(svc, "vulners_mincvss", 7)),
         scripts=str(_get(svc, "scripts", "")),
     )
+
     auth_bf = AuthBruteforce(
         host_timeout_seconds=int(_get(abf, "host_timeout_seconds", 20)),
         per_target_max_attempts=int(_get(abf, "per_target_max_attempts", 6)),
@@ -179,6 +273,31 @@ def load_config(path: Optional[Path] = None) -> 'Config':
         enable_ftp=bool(_get(abf, "enable_ftp", True)),
         enable_telnet=bool(_get(abf, "enable_telnet", True)),
         enable_snmp=bool(_get(abf, "enable_snmp", True)),
+    )
+
+    cmseek_cfg = CMSeekCfg(
+        script_path=str(_get(cm, "script_path", "outils/cmseek/cmseek.py")),
+        timeout_seconds=int(_get(cm, "timeout_seconds", 180)),
+        clear_between_scans=bool(_get(cm, "clear_between_scans", True)),
+        follow_redirect=bool(_get(cm, "follow_redirect", True)),
+        random_agent=bool(_get(cm, "random_agent", True)),
+    )
+
+    tls_cfg = TLSScanCfg(
+        script_path=str(_get(tls, "script_path", "outils/testssl.sh/testssl.sh")),
+        timeout_seconds=int(_get(tls, "timeout_seconds", 60)),
+        prefer_hostname=bool(_get(tls, "prefer_hostname", True)),
+        enabled_services=list(_get(tls, "enabled_services", ["https","ftps","imaps","pop3s","smtps","ldaps","ircs","nntps","xmpps"])),
+        connect_timeout=int(_get(tls, "connect_timeout", 2)),
+        openssl_timeout=int(_get(tls, "openssl_timeout", 2)),
+    )
+
+    mail_cfg = MailAuditCfg(
+        domains=list(_get(mailsec, "domains", [])),
+        dkim_selector_patterns_path=Path(str(_get(mailsec, "dkim_selector_patterns_path", "data/dkim_selector_patterns.txt"))),
+        dns_timeout_seconds=float(_get(mailsec, "dns_timeout_seconds", 3)),
+        max_spf_lookups=int(_get(mailsec, "max_spf_lookups", 10)),
+        problem_catalog_path=Path(str(_get(mailsec, "problem_catalog_path", ""))) if _get(mailsec, "problem_catalog_path", "") else None,
     )
 
     return Config(
@@ -191,8 +310,11 @@ def load_config(path: Optional[Path] = None) -> 'Config':
         report=rep,
         discovery=dis,
         logging=logcfg,
-        os_detect=osdet,
+        os_obsolescence=osdet,
         port_scan=psc,
         service_fingerprint=service_fp,
         auth_bruteforce=auth_bf,
+        cmseek=cmseek_cfg,
+        tls_scan=tls_cfg,
+        mail_audit=mail_cfg
     )

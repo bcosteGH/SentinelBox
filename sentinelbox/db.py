@@ -108,6 +108,88 @@ CREATE TABLE IF NOT EXISTS auth_findings(
   note TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_auth_findings_audit_ip ON auth_findings(audit_id, ip);
+CREATE TABLE IF NOT EXISTS web_auth_findings(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  audit_id TEXT,
+  ip TEXT,
+  proto TEXT,
+  port INTEGER,
+  url TEXT,
+  endpoint TEXT,
+  username TEXT,
+  password TEXT,
+  method TEXT,
+  verified INTEGER,
+  note TEXT,
+  screenshot_path TEXT
+);
+
+CREATE TABLE IF NOT EXISTS cms_inventory(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  audit_id TEXT,
+  ip TEXT,
+  proto TEXT,
+  port INTEGER,
+  cms_name TEXT,
+  version TEXT
+);
+CREATE UNIQUE INDEX IF NOT EXISTS ux_cms_inventory ON cms_inventory(audit_id, ip, proto, port);
+
+CREATE TABLE IF NOT EXISTS cms_wp_details(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  audit_id TEXT,
+  ip TEXT,
+  proto TEXT,
+  port INTEGER,
+  users_json TEXT,
+  plugins_json TEXT,
+  themes_json TEXT
+);
+CREATE UNIQUE INDEX IF NOT EXISTS ux_cms_wp_details ON cms_wp_details(audit_id, ip, proto, port);
+
+-- Détails Joomla
+CREATE TABLE IF NOT EXISTS cms_joomla_details(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  audit_id TEXT,
+  ip TEXT,
+  proto TEXT,
+  port INTEGER,
+  debug_mode TEXT
+);
+CREATE UNIQUE INDEX IF NOT EXISTS ux_cms_joomla_details ON cms_joomla_details(audit_id, ip, proto, port);
+
+CREATE TABLE IF NOT EXISTS tls_results(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  audit_id TEXT,
+  ip TEXT,
+  proto TEXT,
+  port INTEGER,
+  service_name TEXT,
+  hostname TEXT,
+  uri TEXT,
+  html_path TEXT,
+  score_protocol_support INTEGER,
+  score_key_exchange INTEGER,
+  score_cipher_strength INTEGER
+);
+CREATE UNIQUE INDEX IF NOT EXISTS ux_tls_results ON tls_results(audit_id, ip, proto, port);
+
+CREATE TABLE IF NOT EXISTS mail_audit_results(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  audit_id TEXT,
+  domain TEXT,
+  score_total INTEGER,
+  score_mx INTEGER,
+  score_spf INTEGER,
+  score_dkim INTEGER,
+  score_dmarc INTEGER,
+  score_dnssec INTEGER,
+  details_json TEXT
+);
+CREATE UNIQUE INDEX IF NOT EXISTS ux_mail_audit_results ON mail_audit_results(audit_id, domain);
+
+
+CREATE INDEX IF NOT EXISTS idx_web_auth_findings_audit_ip ON web_auth_findings(audit_id, ip);
 CREATE INDEX IF NOT EXISTS idx_modules_audit ON modules(audit_id);
 CREATE INDEX IF NOT EXISTS idx_events_audit ON events(audit_id);
 CREATE UNIQUE INDEX IF NOT EXISTS ux_hosts_audit_ip ON hosts(audit_id, ip);
@@ -124,11 +206,17 @@ def init_db(conn: sqlite3.Connection) -> None:
 
 def purge_db(conn: sqlite3.Connection) -> None:
     conn.executescript("""
+    DROP TABLE IF EXISTS mail_audit_results;
+    DROP TABLE IF EXISTS tls_results;
+    DROP TABLE IF EXISTS web_auth_findings;
     DROP TABLE IF EXISTS auth_findings;
     DROP TABLE IF EXISTS host_vuln_summary;
     DROP TABLE IF EXISTS service_inventory;
     DROP TABLE IF EXISTS ports_inventory;
     DROP TABLE IF EXISTS os_inventory;
+    DROP TABLE IF EXISTS cms_joomla_details;
+    DROP TABLE IF EXISTS cms_wp_details;
+    DROP TABLE IF EXISTS cms_inventory;
     DROP TABLE IF EXISTS kv;
     DROP TABLE IF EXISTS hosts;
     DROP TABLE IF EXISTS events;
@@ -264,3 +352,139 @@ def list_auth_findings(conn: sqlite3.Connection, audit_id: str) -> list[dict[str
     rows = cur.fetchall()
     return [{"ip": r[0], "proto": r[1], "port": r[2], "service_name": r[3], "username": r[4], "password_masked": r[5], "method": r[6], "verified": r[7], "note": r[8]} for r in rows]
 
+def add_web_auth_finding(conn: sqlite3.Connection, audit_id: str, ip: str, proto: str, port: int, url: str, endpoint: str, username: Optional[str], password: Optional[str], method: str, verified: bool, note: Optional[str], screenshot_path: Optional[str]) -> None:
+    conn.execute(
+        "INSERT INTO web_auth_findings(audit_id, ip, proto, port, url, endpoint, username, password, method, verified, note, screenshot_path) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+        (audit_id, ip, proto, port, url, endpoint, username, password, method, int(bool(verified)), note, screenshot_path)
+    )
+
+def list_web_auth_findings(conn: sqlite3.Connection, audit_id: str) -> list[dict[str, Any]]:
+    cur = conn.execute("SELECT ip, proto, port, url, endpoint, username, password, method, verified, note, screenshot_path FROM web_auth_findings WHERE audit_id=? ORDER BY ip, proto, port", (audit_id,))
+    rows = cur.fetchall()
+    return [{"ip": r[0], "proto": r[1], "port": r[2], "url": r[3], "endpoint": r[4], "username": r[5], "password": r[6], "method": r[7], "verified": r[8], "note": r[9], "screenshot_path": r[10]} for r in rows]
+
+def upsert_cms_inventory(conn, audit_id: str, ip: str, proto: str, port: int, cms_name: str, version: Optional[str]) -> None:
+    cur = conn.execute("SELECT id FROM cms_inventory WHERE audit_id=? AND ip=? AND proto=? AND port=?",
+                       (audit_id, ip, proto, port))
+    row = cur.fetchone()
+    if row is None:
+        conn.execute("INSERT INTO cms_inventory(audit_id, ip, proto, port, cms_name, version) VALUES(?,?,?,?,?,?)",
+                     (audit_id, ip, proto, port, cms_name, version))
+    else:
+        conn.execute("UPDATE cms_inventory SET cms_name=?, version=? WHERE id=?",
+                     (cms_name, version, row[0]))
+
+def list_cms_inventory(conn, audit_id: str) -> list[dict[str, Any]]:
+    cur = conn.execute("SELECT ip, proto, port, cms_name, version FROM cms_inventory WHERE audit_id=? ORDER BY ip, proto, port",
+                       (audit_id,))
+    return [{"ip": r[0], "proto": r[1], "port": r[2], "cms_name": r[3], "version": r[4]} for r in cur.fetchall()]
+
+def upsert_wp_details(conn, audit_id: str, ip: str, proto: str, port: int,
+                      users_json: str, plugins_json: str, themes_json: str) -> None:
+    cur = conn.execute("SELECT id FROM cms_wp_details WHERE audit_id=? AND ip=? AND proto=? AND port=?",
+                       (audit_id, ip, proto, port))
+    row = cur.fetchone()
+    if row is None:
+        conn.execute("INSERT INTO cms_wp_details(audit_id, ip, proto, port, users_json, plugins_json, themes_json) VALUES(?,?,?,?,?,?,?)",
+                     (audit_id, ip, proto, port, users_json, plugins_json, themes_json))
+    else:
+        conn.execute("UPDATE cms_wp_details SET users_json=?, plugins_json=?, themes_json=? WHERE id=?",
+                     (users_json, plugins_json, themes_json, row[0]))
+
+def list_wp_details(conn, audit_id: str) -> list[dict[str, Any]]:
+    cur = conn.execute("SELECT ip, proto, port, users_json, plugins_json, themes_json FROM cms_wp_details WHERE audit_id=? ORDER BY ip, proto, port",
+                       (audit_id,))
+    rows = cur.fetchall()
+    return [{"ip": r[0], "proto": r[1], "port": r[2], "users_json": r[3], "plugins_json": r[4], "themes_json": r[5]} for r in rows]
+
+def upsert_joomla_details(conn, audit_id: str, ip: str, proto: str, port: int, debug_mode: Optional[str]) -> None:
+    cur = conn.execute("SELECT id FROM cms_joomla_details WHERE audit_id=? AND ip=? AND proto=? AND port=?",
+                       (audit_id, ip, proto, port))
+    row = cur.fetchone()
+    if row is None:
+        conn.execute("INSERT INTO cms_joomla_details(audit_id, ip, proto, port, debug_mode) VALUES(?,?,?,?,?)",
+                     (audit_id, ip, proto, port, debug_mode))
+    else:
+        conn.execute("UPDATE cms_joomla_details SET debug_mode=? WHERE id=?",
+                     (debug_mode, row[0]))
+
+def list_joomla_details(conn, audit_id: str) -> list[dict[str, Any]]:
+    cur = conn.execute("SELECT ip, proto, port, debug_mode FROM cms_joomla_details WHERE audit_id=? ORDER BY ip, proto, port",
+                       (audit_id,))
+    rows = cur.fetchall()
+    return [{"ip": r[0], "proto": r[1], "port": r[2], "debug_mode": r[3]} for r in rows]
+
+
+def upsert_tls_result(conn, audit_id: str, ip: str, proto: str, port: int,
+                      service_name: Optional[str], hostname: Optional[str],
+                      uri: Optional[str], html_path: Optional[str],
+                      score_protocol_support: Optional[int],
+                      score_key_exchange: Optional[int],
+                      score_cipher_strength: Optional[int]) -> None:
+    cur = conn.execute("SELECT id FROM tls_results WHERE audit_id=? AND ip=? AND proto=? AND port=?",
+                       (audit_id, ip, proto, port))
+    row = cur.fetchone()
+    if row is None:
+        conn.execute(
+            "INSERT INTO tls_results(audit_id, ip, proto, port, service_name, hostname, uri, html_path, "
+            "score_protocol_support, score_key_exchange, score_cipher_strength) "
+            "VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+            (audit_id, ip, proto, port, service_name, hostname, uri, html_path,
+             score_protocol_support, score_key_exchange, score_cipher_strength)
+        )
+    else:
+        conn.execute(
+            "UPDATE tls_results SET service_name=?, hostname=?, uri=?, html_path=?, "
+            "score_protocol_support=?, score_key_exchange=?, score_cipher_strength=? WHERE id=?",
+            (service_name, hostname, uri, html_path,
+             score_protocol_support, score_key_exchange, score_cipher_strength, row[0])
+        )
+
+def list_tls_results(conn, audit_id: str) -> list[dict[str, Any]]:
+    cur = conn.execute(
+        "SELECT ip, proto, port, service_name, hostname, uri, html_path, "
+        "score_protocol_support, score_key_exchange, score_cipher_strength "
+        "FROM tls_results WHERE audit_id=? ORDER BY ip, proto, port",
+        (audit_id,)
+    )
+    rows = cur.fetchall()
+    return [{
+        "ip": r[0], "proto": r[1], "port": r[2], "service_name": r[3], "hostname": r[4],
+        "uri": r[5], "html_path": r[6],
+        "score_protocol_support": r[7], "score_key_exchange": r[8], "score_cipher_strength": r[9]
+    } for r in rows]
+
+
+def upsert_mail_audit_result(conn, audit_id: str, domain: str,
+                             score_total: int, score_mx: int, score_spf: int,
+                             score_dkim: int, score_dmarc: int, score_dnssec: int,
+                             details_json: str) -> None:
+    cur = conn.execute("SELECT id FROM mail_audit_results WHERE audit_id=? AND domain=?", (audit_id, domain))
+    row = cur.fetchone()
+    if row is None:
+        conn.execute(
+            "INSERT INTO mail_audit_results(audit_id, domain, score_total, score_mx, score_spf, score_dkim, score_dmarc, score_dnssec, details_json) VALUES(?,?,?,?,?,?,?,?,?)",
+            (audit_id, domain, score_total, score_mx, score_spf, score_dkim, score_dmarc, score_dnssec, details_json)
+        )
+    else:
+        conn.execute(
+            "UPDATE mail_audit_results SET score_total=?, score_mx=?, score_spf=?, score_dkim=?, score_dmarc=?, score_dnssec=?, details_json=? WHERE id=?",
+            (score_total, score_mx, score_spf, score_dkim, score_dmarc, score_dnssec, details_json, row[0])
+        )
+
+def list_mail_audit_results(conn, audit_id: str) -> list[dict[str, Any]]:
+    cur = conn.execute("SELECT domain, score_total, score_mx, score_spf, score_dkim, score_dmarc, score_dnssec, details_json FROM mail_audit_results WHERE audit_id=? ORDER BY domain", (audit_id,))
+    rows = cur.fetchall()
+    out = []
+    for r in rows:
+        out.append({
+            "domain": r[0],
+            "score_total": r[1],
+            "score_mx": r[2],
+            "score_spf": r[3],
+            "score_dkim": r[4],
+            "score_dmarc": r[5],
+            "score_dnssec": r[6],
+            "details_json": r[7],
+        })
+    return out

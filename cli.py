@@ -4,18 +4,26 @@ from sentinelbox.modules.host_discovery_nmap import HostDiscoveryNmap
 from sentinelbox.modules.port_scan import PortScanNmap
 from sentinelbox.modules.os_obsolescence import OSObsolescence
 from sentinelbox.modules.service_fingerprint_nmap import ServiceFingerprintNmap
-from sentinelbox.modules.auth_bruteforce import AuthBruteforce  # NEW
+from sentinelbox.modules.auth_bruteforce import AuthBruteforce
+from sentinelbox.modules.web_portal_bruteforce import WebPortalBruteforce
+from sentinelbox.modules.cms_detect_cmseek import CMSeek
+from sentinelbox.modules.tls_scan_testssl import TLSScanTestssl
+from sentinelbox.modules.mail_domain_audit import MailDomainAudit
 
 def main():
     cfg = load_config()
     runner = AuditRunner(cfg.workdir, cfg.db_path)
 
     modules = [
-        HostDiscoveryNmap(),
-        PortScanNmap(),
-        ServiceFingerprintNmap(),
-        AuthBruteforce(),          # NEW
-        OSObsolescence(),
+        #HostDiscoveryNmap(),
+        #PortScanNmap(),
+        #ServiceFingerprintNmap(),
+        # CMSeek(),
+        # WebPortalBruteforce(),
+        # AuthBruteforce(),
+        # OSObsolescence(),
+        #TLSScanTestssl(),
+        MailDomainAudit()
     ]
 
     ctx = {
@@ -64,7 +72,7 @@ def main():
             "vulners_mincvss": cfg.service_fingerprint.vulners_mincvss,
             "scripts": cfg.service_fingerprint.scripts,
         },
-        
+
         "auth_bruteforce": {
             "host_timeout_seconds": cfg.auth_bruteforce.host_timeout_seconds,
             "per_target_max_attempts": cfg.auth_bruteforce.per_target_max_attempts,
@@ -76,18 +84,44 @@ def main():
         },
 
         "os_obsolescence": {
-            "nmap_timing": cfg.os_detect.nmap_timing,
-            "host_timeout_seconds": cfg.os_detect.host_timeout_seconds,
-            "batch_size": cfg.os_detect.batch_size,
-            "max_retries": cfg.os_detect.max_retries,
-            "overall_timeout_seconds": cfg.os_detect.overall_timeout_seconds,
-            "oscan_guess": cfg.os_detect.oscan_guess,
-            "oscan_limit": cfg.os_detect.oscan_limit,
-            "use_pn": cfg.os_detect.use_pn,
-            "rules_path": str(cfg.os_detect.rules_path),
-            "enable_rules_fallback": cfg.os_detect.enable_rules_fallback,
-            "strict_unambiguous_only": cfg.os_detect.strict_unambiguous_only,
+            "nmap_timing": cfg.os_obsolescence.nmap_timing,
+            "host_timeout_seconds": cfg.os_obsolescence.host_timeout_seconds,
+            "batch_size": cfg.os_obsolescence.batch_size,
+            "max_retries": cfg.os_obsolescence.max_retries,
+            "overall_timeout_seconds": cfg.os_obsolescence.overall_timeout_seconds,
+            "oscan_guess": cfg.os_obsolescence.oscan_guess,
+            "oscan_limit": cfg.os_obsolescence.oscan_limit,
+            "use_pn": cfg.os_obsolescence.use_pn,
+            "rules_path": str(cfg.os_obsolescence.rules_path),
+            "enable_rules_fallback": cfg.os_obsolescence.enable_rules_fallback,
+            "strict_unambiguous_only": cfg.os_obsolescence.strict_unambiguous_only,
         },
+
+        "cmseek": {
+            "script_path": cfg.cmseek.script_path,
+            "timeout_seconds": cfg.cmseek.timeout_seconds,
+            "clear_between_scans": cfg.cmseek.clear_between_scans,
+            "follow_redirect": cfg.cmseek.follow_redirect,
+            "random_agent": cfg.cmseek.random_agent,
+        },
+
+        "tls_scan": {
+            "script_path": cfg.tls_scan.script_path,
+            "timeout_seconds": cfg.tls_scan.timeout_seconds,
+            "prefer_hostname": cfg.tls_scan.prefer_hostname,
+            "enabled_services": cfg.tls_scan.enabled_services,
+            "connect_timeout": cfg.tls_scan.connect_timeout,
+            "openssl_timeout": cfg.tls_scan.openssl_timeout,
+        },
+
+        "mail_audit": {
+            "domains": cfg.mail_audit.domains,
+            "dkim_selector_patterns_path": str(cfg.mail_audit.dkim_selector_patterns_path),
+            "dns_timeout_seconds": cfg.mail_audit.dns_timeout_seconds,
+            "max_spf_lookups": cfg.mail_audit.max_spf_lookups,
+            "problem_catalog_path": str(cfg.mail_audit.problem_catalog_path) if cfg.mail_audit.problem_catalog_path else None,
+        },
+
     }
 
     audit_id = runner.run_audit(modules, ctx)

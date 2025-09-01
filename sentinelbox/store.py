@@ -1,6 +1,7 @@
 from pathlib import Path
+import json
 from typing import Any, Optional
-from .db import upsert_host, list_hosts, kv_put, kv_get, upsert_os_inventory, list_os_inventory, upsert_service_inventory, replace_host_vuln_summary, upsert_port_inventory, list_ports_inventory, list_service_inventory, insert_auth_finding, list_auth_findings
+from .db import upsert_host, list_hosts, kv_put, kv_get, upsert_os_inventory, list_os_inventory, upsert_service_inventory, replace_host_vuln_summary, upsert_port_inventory, list_ports_inventory, list_service_inventory, insert_auth_finding, list_auth_findings, list_joomla_details, list_wp_details, list_cms_inventory, upsert_joomla_details, upsert_wp_details, upsert_cms_inventory, upsert_tls_result, list_tls_results, upsert_mail_audit_result, list_mail_audit_results
 
 class Store:
     def __init__(self, conn, audit_id: str, audit_dir: Path):
@@ -46,3 +47,39 @@ class Store:
 
     def list_auth_findings(self) -> list[dict[str, Any]]:
         return list_auth_findings(self.conn, self.audit_id)
+
+    def put_cms_inventory(self, ip: str, proto: str, port: int, cms_name: str, version: Optional[str]):
+        upsert_cms_inventory(self.conn, self.audit_id, ip, proto, port, cms_name, version)
+
+    def put_wp_details(self, ip: str, proto: str, port: int, users: list[str], plugins: list[dict], themes: list[dict]):
+        upsert_wp_details(self.conn, self.audit_id, ip, proto, port,
+                          json.dumps(users, ensure_ascii=False),
+                          json.dumps(plugins, ensure_ascii=False),
+                          json.dumps(themes, ensure_ascii=False))
+
+    def put_joomla_details(self, ip: str, proto: str, port: int, debug_mode: Optional[str]):
+        upsert_joomla_details(self.conn, self.audit_id, ip, proto, port, debug_mode)
+
+    def list_cms_inventory(self) -> list[dict[str, Any]]:
+        return list_cms_inventory(self.conn, self.audit_id)
+
+    def list_wp_details(self) -> list[dict[str, Any]]:
+        return list_wp_details(self.conn, self.audit_id)
+
+    def list_joomla_details(self) -> list[dict[str, Any]]:
+        return list_joomla_details(self.conn, self.audit_id)
+
+    def put_tls_result(self, ip: str, proto: str, port: int, service_name: Optional[str], hostname: Optional[str],
+                       uri: Optional[str], html_path: Optional[str],
+                       score_protocol_support: Optional[int], score_key_exchange: Optional[int], score_cipher_strength: Optional[int]) -> None:
+        upsert_tls_result(self.conn, self.audit_id, ip, proto, port, service_name, hostname, uri, html_path,
+                          score_protocol_support, score_key_exchange, score_cipher_strength)
+
+    def list_tls_results(self) -> list[dict[str, Any]]:
+        return list_tls_results(self.conn, self.audit_id)
+
+    def put_mail_audit_result(self, domain: str, score_total: int, score_mx: int, score_spf: int, score_dkim: int, score_dmarc: int, score_dnssec: int, details_json: str) -> None:
+        upsert_mail_audit_result(self.conn, self.audit_id, domain, score_total, score_mx, score_spf, score_dkim, score_dmarc, score_dnssec, details_json)
+
+    def list_mail_audit_results(self) -> list[dict[str, Any]]:
+        return list_mail_audit_results(self.conn, self.audit_id)

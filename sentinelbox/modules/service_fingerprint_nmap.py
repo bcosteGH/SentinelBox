@@ -22,36 +22,36 @@ VULN_SCRIPTS = {
 }
 
 CVE_MAP: Dict[str, Tuple[str, str, str]] = {
-    "http-vuln-cve2017-5689": ("CVE-2017-5689","10.0","Authentication bypass via digest blank response digest"),
-    "afp-path-vuln": ("CVE-2010-0533","7.5","AFP directory traversal allows listing parent of share root"),
-    "realvnc-auth-bypass": ("CVE-2006-2369","7.5","RealVNC 4.1.1 auth bypass via insecure security type"),
-    "smb2-vuln-uptime": ("CVE-2017-0147","","Missing Windows SMB Server security update"),
-    "smb-vuln-ms17-010": ("CVE-2017-0143","9.0","Critical RCE in Microsoft SMBv1"),
-    "smb-vuln-ms10-061": ("CVE-2010-2729","9.3","Print Spooler improper validation allows RCE"),
-    "smb-vuln-cve-2017-7494": ("CVE-2017-7494","7.5","Samba 3.5.0+ RCE via uploaded shared library"),
-    "smb-double-pulsar-backdoor": ("Malware","10.0","Double Pulsar SMB backdoor detected"),
-    "samba-vuln-cve-2012-1182": ("CVE-2012-1182","10.0","Samba ≤3.6.3 anonymous RCE as root"),
-    "smb-vuln-ms07-029": ("CVE-2007-1748","10.0","DNS Server RPC stack overflow RCE"),
-    "rdp-vuln-ms12-020": ("CVE-2012-0152","4.3","RDP DoS vulnerability"),
-    "http-vuln-cve2015-1635": ("CVE-2015-1635","10.0","HTTP.sys RCE via crafted HTTP requests"),
-    "http-slowloris-check": ("CVE-2007-6750","5.0","Slowloris DoS via partial requests"),
-    "http-vuln-cve2012-1823": ("CVE-2012-1823","7.5","PHP-CGI switches injection leads to RCE"),
-    "http-phpmyadmin-dir-traversal": ("CVE-2005-3299","5.0","phpMyAdmin 2.6.4 file inclusion via $__redirect"),
-    "http-dlink-backdoor": ("Backdoor","","D-Link firmware admin bypass via secret User-Agent"),
-    "ftp-vsftpd-backdoor": ("CVE-2011-2523","9.8","vsFTPd 2.3.4 backdoor"),
-    "http-tplink-dir-traversal": ("Bypass","","TP-Link path traversal reads config/any file")
+    "http-vuln-cve2017-5689": ("CVE-2017-5689","10.0","Contournement d’authentification via digest vide"),
+    "afp-path-vuln": ("CVE-2010-0533","7.5","Traversée de répertoires AFP permettant de lister au-delà de la racine"),
+    "realvnc-auth-bypass": ("CVE-2006-2369","7.5","RealVNC 4.1.1 : contournement d’authentification"),
+    "smb2-vuln-uptime": ("CVE-2017-0147","","Mise à jour de sécurité SMB manquante"),
+    "smb-vuln-ms17-010": ("CVE-2017-0143","9.0","Exécution de code à distance critique dans SMBv1"),
+    "smb-vuln-ms10-061": ("CVE-2010-2729","9.3","Service d’impression Windows : exécution de code"),
+    "smb-vuln-cve-2017-7494": ("CVE-2017-7494","7.5","Samba 3.5.0+ : RCE via bibliothèque partagée"),
+    "smb-double-pulsar-backdoor": ("Malware","","Détection du backdoor DoublePulsar SMB"),
+    "samba-vuln-cve-2012-1182": ("CVE-2012-1182","10.0","Samba ≤3.6.3 : exécution de code anonyme (root)"),
+    "smb-vuln-ms07-029": ("CVE-2007-1748","10.0","DNS Server RPC : débordement et RCE"),
+    "rdp-vuln-ms12-020": ("CVE-2012-0152","4.3","RDP vulnérable à un déni de service"),
+    "http-vuln-cve2015-1635": ("CVE-2015-1635","10.0","HTTP.sys : exécution de code via requêtes forgées"),
+    "http-slowloris-check": ("CVE-2007-6750","5.0","Slowloris : déni de service par requêtes partielles"),
+    "http-vuln-cve2012-1823": ("CVE-2012-1823","7.5","PHP-CGI : injection d’options menant à RCE"),
+    "http-phpmyadmin-dir-traversal": ("CVE-2005-3299","5.0","phpMyAdmin 2.6.4 : inclusion de fichier"),
+    "http-dlink-backdoor": ("Backdoor","","Passerelle D-Link : admin bypass via User-Agent secret"),
+    "ftp-vsftpd-backdoor": ("CVE-2011-2523","9.8","vsFTPd 2.3.4 : porte dérobée"),
+    "http-tplink-dir-traversal": ("Bypass","","TP-Link : traversée de chemins lisant la config")
 }
 
 SIMPLE_MAP: Dict[str, Tuple[str, str]] = {
-    "ftp-proftpd-backdoor": ("Backdoor","Presence of ProFTP 1.3.3c backdoor"),
-    "firewall-bypass": ("Bypass","Firewall vulnerable to FTP helper bypass"),
-    "x11-access": ("GUI access","X server access is granted"),
-    "dns-update": ("Insecure update","DNS record update allowed without permission"),
-    "http-frontpage-login": ("Bypass","FrontPage extensions allow anonymous login"),
-    "ftp-anon": ("Default authentication","Anonymous FTP login allowed")
+    "ftp-proftpd-backdoor": ("Porte dérobée","Présence d’une porte dérobée ProFTPd 1.3.3c"),
+    "firewall-bypass": ("Contournement","Pare-feu vulnérable au contournement via l’assistant FTP"),
+    "x11-access": ("Accès interface graphique","Accès au serveur X autorisé"),
+    "dns-update": ("Mise à jour DNS non sécurisée","Mise à jour DNS autorisée sans contrôle"),
+    "http-frontpage-login": ("Contournement","Extensions FrontPage autorisent une connexion anonyme"),
+    "ftp-anon": ("Authentification par défaut","Connexion FTP anonyme autorisée")
 }
 
-VULNERS_LABEL = "Old version"
+VULNERS_LABEL = "Ancienne version"
 RX_VULNERS = re.compile(r"(CVE-\d+-\d+)\s+(\d+(?:\.\d+)?)")
 
 class ServiceFingerprintNmap(Module):
@@ -76,6 +76,21 @@ class ServiceFingerprintNmap(Module):
         services_json_path = out_dir / "service_inventory.json"
         hostvuln_json_path = out_dir / "host_vuln_summary.json"
 
+        logs_dir = audit_dir / "logs" / self.name
+        xml_dir = logs_dir / "xml"
+        hosts_dir = logs_dir / "hosts"
+        logs_dir.mkdir(parents=True, exist_ok=True)
+        xml_dir.mkdir(parents=True, exist_ok=True)
+        hosts_dir.mkdir(parents=True, exist_ok=True)
+        commands_path = logs_dir / "commands.txt"
+
+        ip_name_map: Dict[str, Optional[str]] = {}
+        try:
+            for h in (store.list_hosts() if store else []):
+                ip_name_map[h["ip"]] = h.get("hostname")
+        except Exception:
+            pass
+
         ports = store.list_ports() if store else []
         by_ip: Dict[str, Dict[str, List[int]]] = {}
         for p in ports:
@@ -90,7 +105,7 @@ class ServiceFingerprintNmap(Module):
                 by_ip[ip][proto].append(port)
 
         if callable(log):
-            log("INFO", self.name, "start", {"ips": len(by_ip)})
+            log("INFO", self.name, "start", {"hosts": len(by_ip)})
 
         scripts_list = [
             "afp-path-vuln","dns-update","firewall-bypass","ftp-anon","ftp-proftpd-backdoor","ftp-vsftpd-backdoor",
@@ -118,6 +133,7 @@ class ServiceFingerprintNmap(Module):
         hostvuln_items: List[Dict[str, Any]] = []
 
         for ip, d in by_ip.items():
+            display = ip_name_map.get(ip) or ip
             tcp_ports = d["tcp"]
             udp_ports = d["udp"]
             if not tcp_ports and not udp_ports:
@@ -129,9 +145,13 @@ class ServiceFingerprintNmap(Module):
                 probes.append("-sS")
             if udp_ports:
                 probes.append("-sU")
-            base = ["nmap", "-Pn", "-n", f"-{timing}", "--max-retries", str(max_retries), "--host-timeout", f"{host_timeout}s", "--min-rate", str(min_rate), "--max-rate", str(max_rate), "-sV", "--version-intensity", str(version_intensity), "--script", scripts_arg, "--script-timeout", f"{script_timeout}s"]
+            base = [
+                "nmap", "-Pn", "-n", f"-{timing}", "--max-retries", str(max_retries),
+                "--host-timeout", f"{host_timeout}s", "--min-rate", str(min_rate), "--max-rate", str(max_rate),
+                "-sV", "--version-intensity", str(version_intensity),
+                "--script", scripts_arg, "--script-timeout", f"{script_timeout}s"
+            ]
             cmd = base + probes
-
             parts = []
             if tcp_ports:
                 parts.append("T:" + ",".join(str(p) for p in tcp_ports))
@@ -142,27 +162,37 @@ class ServiceFingerprintNmap(Module):
             cmd += ["--script-args", "mincvss=7", "-oX", "-", ip]
 
             if callable(log):
-                log("DEBUG", self.name, "exec", {"cmd": " ".join(cmd)})
+                log("DEBUG", self.name, "exec", {"ip": ip, "name": display if display != ip else None, "cmd": " ".join(cmd)})
+            try:
+                with commands_path.open("a", encoding="utf-8") as cf:
+                    cf.write(" ".join(cmd) + "\n")
+            except Exception:
+                pass
 
             try:
                 p = subprocess.run(cmd, capture_output=True, text=True, timeout=host_timeout + 60)
             except subprocess.TimeoutExpired:
                 if callable(log):
-                    log("WARNING", self.name, "timeout", {"ip": ip})
+                    log("WARNING", self.name, "timeout", {"ip": ip, "name": display if display != ip else None})
                 hostvuln_items.append({"ip": ip, "vulns": []})
                 continue
             if p.returncode != 0 and not p.stdout:
                 if callable(log):
-                    log("WARNING", self.name, "nmap_error", {"ip": ip, "code": p.returncode, "stderr": p.stderr})
+                    log("WARNING", self.name, "nmap_error", {"ip": ip, "name": display if display != ip else None, "code": p.returncode, "stderr": p.stderr})
                 hostvuln_items.append({"ip": ip, "vulns": []})
                 continue
 
-            xml = p.stdout
+            xml_text = p.stdout or ""
             try:
-                root = ET.fromstring(xml)
+                (xml_dir / f"{ip.replace('.', '_')}.xml").write_text(xml_text, encoding="utf-8")
+            except Exception:
+                pass
+
+            try:
+                root = ET.fromstring(xml_text)
             except Exception:
                 if callable(log):
-                    log("WARNING", self.name, "xml_parse_error", {"ip": ip})
+                    log("WARNING", self.name, "xml_parse_error", {"ip": ip, "name": display if display != ip else None})
                 hostvuln_items.append({"ip": ip, "vulns": []})
                 continue
 
@@ -287,41 +317,43 @@ class ServiceFingerprintNmap(Module):
                     elif sid == "http-git":
                         first = out.strip().splitlines()[0] if out.strip() else ""
                         if first:
-                            label = "Disclosure"
-                            desc = f"Git repository found: {first}"
+                            label = "Divulgation"
+                            desc = f"Dépôt Git trouvé: {first}"
                     elif sid == "ms-sql-empty-password":
                         if "Login Success" in out:
-                            label = "Default account"
-                            desc = "Empty password in MS-SQL database"
+                            label = "Compte par défaut"
+                            desc = "Mot de passe vide dans MS-SQL"
                     elif sid == "mysql-dump-hashes":
                         if ":" in out:
-                            label = "Hashes"
-                            desc = "Database hash dump available"
+                            label = "Hachages"
+                            desc = "Dump des hachages de base disponible"
                     elif sid == "mysql-empty-password":
                         if "account has empty password" in out:
-                            label = "Default account"
-                            desc = "Empty password in MySQL"
+                            label = "Compte par défaut"
+                            desc = "Mot de passe vide dans MySQL"
                     elif sid == "krb5-enum-users":
                         lines = [x for x in out.splitlines()[1:] if x.strip()]
                         if lines:
-                            label = "Disclosure"
-                            desc = "Kerberos user enumeration"
+                            label = "Divulgation"
+                            desc = "Énumération d’utilisateurs Kerberos"
                     elif sid == "http-method-tamper":
-                        if "suspected to be vulnerable" in out.lower() or "vulnerable" in out.lower():
-                            label = "Bypass"
-                            desc = "HTTP verb tampering suspected"
+                        lower = out.lower()
+                        if "suspected to be vulnerable" in lower or "vulnerable" in lower:
+                            label = "Contournement"
+                            desc = "Suspicion de contournement par variation de méthode HTTP"
                     elif sid == "sip-enum-users":
                         if ":" in out:
-                            label = "Disclosure"
-                            desc = "SIP numbers enumeration"
+                            label = "Divulgation"
+                            desc = "Énumération de numéros SIP"
                     elif sid == "http-config-backup":
-                        if "/".encode() or "/" in out:
-                            label = "Disclosure"
-                            desc = "HTTP configuration files exposed"
+                        if "/" in out:
+                            label = "Divulgation"
+                            desc = "Fichiers de configuration HTTP exposés"
                     elif sid == "http-cookie-flags":
-                        if "httponly" in out.lower() or "secure" in out.lower() or "cookie" in out.lower():
-                            label = "Vulnerability"
-                            desc = "Security lacks in HTTP headers"
+                        lower = out.lower()
+                        if "httponly" in lower or "secure" in lower or "cookie" in lower:
+                            label = "Vulnérabilité"
+                            desc = "Sécurité insuffisante dans les en-têtes HTTP"
                     if label and desc:
                         k = f"{label}"
                         if k not in agg_by_label:
@@ -338,29 +370,30 @@ class ServiceFingerprintNmap(Module):
 
             if outdated_ports:
                 total_cves7 = sum(per_port_vulners.get((p.split("/")[0], int(p.split("/")[1])), 0) for p in outdated_ports)
-                if "Old version" not in agg_by_label:
-                    agg_by_label["Old version"] = {"label": "Old version", "description": f"La version du logiciel semble ancienne, {total_cves7} CVE(s) avec CVSS ≥ 7 détectées", "ports": set()}
+                if VULNERS_LABEL not in agg_by_label:
+                    agg_by_label[VULNERS_LABEL] = {"label": VULNERS_LABEL, "description": f"La version du logiciel semble ancienne, {total_cves7} CVE(s) avec CVSS ≥ 7 détectées", "ports": set()}
                 else:
-                    agg_by_label["Old version"]["description"] = f"La version du logiciel semble ancienne, {total_cves7} CVE(s) avec CVSS ≥ 7 détectées"
+                    agg_by_label[VULNERS_LABEL]["description"] = f"La version du logiciel semble ancienne, {total_cves7} CVE(s) avec CVSS ≥ 7 détectées"
                 for pstr in outdated_ports:
-                    agg_by_label["Old version"]["ports"].add(pstr)
+                    agg_by_label[VULNERS_LABEL]["ports"].add(pstr)
 
             for (proto, portid), svc in service_data.items():
                 state = port_states.get((proto, portid), "open")
                 name_conf, ver_conf = service_conf.get((proto, portid), (None, None))
-                store.put_service_info(
-                    ip=ip,
-                    proto=proto,
-                    port=portid,
-                    state=state or "open",
-                    service_name=svc.get("name"),
-                    name_confidence=name_conf,
-                    product=svc.get("product"),
-                    version=svc.get("version"),
-                    version_confidence=ver_conf,
-                    extrainfo=svc.get("extrainfo"),
-                    tunnel=svc.get("tunnel")
-                )
+                if store:
+                    store.put_service_info(
+                        ip=ip,
+                        proto=proto,
+                        port=portid,
+                        state=state or "open",
+                        service_name=svc.get("name"),
+                        name_confidence=name_conf,
+                        product=svc.get("product"),
+                        version=svc.get("version"),
+                        version_confidence=ver_conf,
+                        extrainfo=svc.get("extrainfo"),
+                        tunnel=svc.get("tunnel")
+                    )
                 services_items.append({
                     "ip": ip,
                     "proto": proto,
@@ -378,9 +411,23 @@ class ServiceFingerprintNmap(Module):
             items = []
             for v in agg_by_label.values():
                 items.append({"label": v["label"], "ports": sorted(list(v["ports"])) if v["ports"] else [], "description": v["description"]})
-            store.replace_host_vuln_summary(ip, json.dumps({"items": items}, ensure_ascii=False))
+            if store:
+                store.replace_host_vuln_summary(ip, json.dumps({"items": items}, ensure_ascii=False))
             hostvuln_items.append({"ip": ip, "vulns": items})
-            if any(x["label"] == "Old version" for x in items):
+
+            try:
+                host_debug = {
+                    "ip": ip,
+                    "name": display if display != ip else None,
+                    "tcp_ports": tcp_ports,
+                    "udp_ports": udp_ports,
+                    "findings": items
+                }
+                (hosts_dir / f"{ip.replace('.', '_')}.json").write_text(json.dumps(host_debug, ensure_ascii=False, separators=(",", ":"), indent=2), encoding="utf-8")
+            except Exception:
+                pass
+
+            if any(x["label"] == VULNERS_LABEL for x in items):
                 hits_total += 1
                 outdated_total += 1
             elif items:
@@ -393,6 +440,18 @@ class ServiceFingerprintNmap(Module):
             json.dump({"items": hostvuln_items, "duration_s": dur}, f, ensure_ascii=False, separators=(",", ":"), indent=2)
 
         if callable(log):
-            log("INFO", self.name, "done", {"hosts": len(by_ip), "services_out": str(services_json_path), "hostvuln_out": str(hostvuln_json_path)})
+            log("INFO", self.name, "done", {
+                "hosts": len(by_ip),
+                "services_out": str(services_json_path),
+                "hostvuln_out": str(hostvuln_json_path),
+                "logs_dir": str(logs_dir)
+            })
 
-        return True, False, "ok", {"ips": len(by_ip), "ports": total_ports, "findings": hits_total, "outdated_ports": outdated_total, "services_out": str(services_json_path), "hostvuln_out": str(hostvuln_json_path)}
+        return True, False, "ok", {
+            "ips": len(by_ip),
+            "ports": total_ports,
+            "findings": hits_total,
+            "outdated_ports": outdated_total,
+            "services_out": str(services_json_path),
+            "hostvuln_out": str(hostvuln_json_path)
+        }

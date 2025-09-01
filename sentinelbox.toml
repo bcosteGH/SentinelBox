@@ -1,5 +1,5 @@
 [core]
-interface = "br-6528083c3c1a"
+interface = "br-3a510389ece8"
 workdir = "./runs"
 db_path = "./state.sqlite"
 reset_previous_runs = true
@@ -26,11 +26,11 @@ resolver_threads = 32
 enable_avahi = true
 
 [port_scan]
-nmap_timing = "T4"
+nmap_timing = "T5"
 tcp_top_ports = 1000
 tcp_min_rate = 50
 tcp_max_rate = 150
-host_timeout_seconds = 180
+host_timeout_seconds = 60
 batch_size = 16
 max_retries = 1
 overall_timeout_seconds = 900
@@ -51,7 +51,7 @@ enable_rules_fallback = true
 strict_unambiguous_only = true
 
 [service_fingerprint]
-nmap_timing = "T4"
+nmap_timing = "T5"
 host_timeout_seconds = 180
 max_retries = 1
 min_rate = 50
@@ -69,3 +69,28 @@ enable_ssh = true
 enable_ftp = true
 enable_telnet = true
 enable_snmp = true
+
+[cmseek]
+script_path = "outils/cmseek/cmseek.py"
+timeout_seconds = 30
+clear_between_scans = true
+follow_redirect = true
+random_agent = true
+
+
+[tls_scan]
+script_path = "outils/testssl.sh/testssl.sh"
+timeout_seconds = 120
+prefer_hostname = true
+enabled_services = ["https","ftps","imaps","pop3s","smtps","ldaps","ircs","nntps","xmpps"]
+connect_timeout = 2
+openssl_timeout = 2
+
+
+[mail_audit]
+domains = ["cybercape.fr"]
+dkim_selector_patterns_path = "data/dkim_selector_patterns.txt"
+dns_timeout_seconds = 3
+max_spf_lookups = 10
+problem_catalog_path = ""
+
